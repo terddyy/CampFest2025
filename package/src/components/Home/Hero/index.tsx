@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
                 <Link href="/contactus" className='px-6 py-3 sm:px-8 sm:py-4 border border-white dark:border-dark bg-white dark:bg-dark text-dark dark:text-white duration-300 dark:hover:text-dark hover:bg-transparent hover:text-white text-sm sm:text-base font-semibold rounded-full hover:cursor-pointer'>
                   Get in touch
                 </Link>
-                <Link href="/properties" className='px-6 py-3 sm:px-8 sm:py-4 border border-white dark:border-dark bg-transparent text-white dark:text-dark hover:bg-white dark:hover:bg-dark dark:hover:text-white hover:text-dark duration-300 text-sm sm:text-base font-semibold rounded-full hover:cursor-pointer'>
+                <Link href="/properties" className='px-6 py-3 sm:px-8 sm:py-4 border border-white dark:border-dark bg-transparent text-white dark:text-dark hover:bg-white dark:hover:bg-dark dark:hover:text-white hover:text-dark duration-300 text-sm sm:text-base font-semibold rounded-full hover:cursor-pointer active:scale-95 transition-all'>
                   Other Properties
                 </Link>
               </div>
