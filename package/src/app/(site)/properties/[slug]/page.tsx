@@ -3,7 +3,7 @@ import React from 'react';
 import { propertyHomes } from '@/app/api/propertyhomes';
 import { useParams } from "next/navigation";
 import { Icon } from '@iconify/react';
-import { testimonials } from '@/app/api/testimonial';
+
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -193,19 +193,6 @@ export default function Details() {
                                 <Image src="/images/properties/vector.svg" width={400} height={500} alt="vector" unoptimized={true} />
                             </div>
                         </div>
-                        {testimonials.slice(0, 1).map((item, index) => (
-                            <div key={index} className="border p-10 rounded-2xl border-dark/10 dark:border-white/20 mt-10 flex flex-col gap-6">
-                                <Icon icon="ph:house-simple" width={44} height={44} className="text-primary" />
-                                <p className='text-xm text-dark dark:text-white'>{item.review}</p>
-                                <div className="flex items-center gap-6">
-                                    <Image src={item.image} alt={item.name} width={400} height={500} className='w-20 h-20 rounded-2xl' unoptimized={true} />
-                                    <div className="">
-                                        <h3 className='text-xm text-dark dark:text-white'>{item.name}</h3>
-                                        <h4 className='text-base text-dark/50 dark:text-white/50'>{item.position}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
                     </div>
                 </div>
             </div>

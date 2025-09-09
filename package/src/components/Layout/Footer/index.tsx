@@ -42,19 +42,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-between md:flex-nowrap flex-wrap items-center py-6 gap-6">
-          <p className="text-white/40 text-sm ">
-            ©2025 Homely - Design & Developed by <Link href="https://getnextjstemplates.com/" className="hover:text-primary" target="_blanck">GetNextJs Templates</Link>
-          </p>
-          <div className="flex gap-8 items-center">
-            <Link href="#" className="text-white/40 hover:text-primary text-sm">
-              Terms of service
-            </Link>
-            <Link href="#" className="text-white/40 hover:text-primary text-sm">
-              Privacy policy
-            </Link>
-          </div>
-        </div>
       </div>
     </footer >
   );
