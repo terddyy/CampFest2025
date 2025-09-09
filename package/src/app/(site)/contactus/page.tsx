@@ -25,11 +25,10 @@ export default function ContactUs() {
         </div>
         <div className='text-center'>
           <h3 className='text-4xl sm:text-52 font-medium tracking-tighter text-black dark:text-white mb-3 leading-10 sm:leading-14'>
-            Have questions? ready to help!
+            Contact us here or email us
           </h3>
-          <p className='text-xm font-normal tracking-tight text-black/50 dark:text-white/50 leading-6'>
-            Looking for your dream home? Our expert team offers
-            personalized guidance and market expertise tailored to you.
+          <p className='text-3xl font-bold text-primary dark:text-primary leading-6'>
+            0931-214-6746
           </p>
         </div>
       </div>
