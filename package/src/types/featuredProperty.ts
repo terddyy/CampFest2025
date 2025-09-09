@@ -1,4 +1,5 @@
 export type FeaturedProperty = {
-    scr: string
-    alt: string
+    title: string
+    image: string
+    description: string
 }

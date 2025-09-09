@@ -35,166 +35,76 @@ const FeaturedProperty: React.FC = () => {
 
 
   return (
-    <section>
-      <div className="container max-w-8xl mx-auto px-5 2xl:px-0">
-        <div className="grid lg:grid-cols-2 gap-10">
-          <div className="relative">
-            <Carousel
-              setApi={setApi}
-              opts={{
-                loop: true,
-              }}
-            >
-              <CarouselContent>
-                {featuredProprty.map((item, index) => (
-                  <CarouselItem key={index}>
-                    <Image
-                      src={item.scr}
-                      alt={item.alt}
-                      width={680}
-                      height={530}
-                      className="rounded-2xl w-full h-540"
-                      unoptimized={true}
-                    />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-            <div className="absolute left-2/5 bg-dark/50 rounded-full py-2.5 bottom-10 flex justify-center mt-4 gap-2.5 px-2.5">
-              {Array.from({ length: count }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleDotClick(index)}
-                  className={`w-2.5 h-2.5 rounded-full ${current === index + 1 ? "bg-white" : "bg-white/50"}`}
-                />
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col gap-10">
-            <div>
-              <p className="text-dark/75 dark:text-white/75 text-base font-semibold flex gap-2">
-                <Icon icon="ph:house-simple-fill" className="text-2xl text-primary " />
-                Featured property
-              </p>
-              <h2 className="lg:text-52 text-40 font-medium text-dark dark:text-white">
-                Modern luxe villa
-              </h2>
-              <div className="flex items-center gap-2.5">
-                <Icon icon="ph:map-pin" width={28} height={26} className="text-dark/50 dark:text-white/50" />
-                <p className="text-dark/50 dark:text-white/50 text-base">
-                  20 S Aurora Ave, Miami
-                </p>
-              </div>
-            </div>
-            <p className="text-base text-dark/50 dark:text-white/50">
-              Experience luxury living at modern luxe villa, located at 20 S Aurora Ave, Miami. Priced at $1,650,500, this 560 ft² smart home offers 4 bedrooms,
-              3 bathrooms, and spacious living areas. Enjoy energy efficiency, natural light, security systems, outdoor spaces, and 2 bar areas—perfect for 8+
-              guests. Built in 2025.
+    <section className='py-14 lg:py-28'>
+      <div className='container max-w-8xl mx-auto px-5 2xl:px-0'>
+        <div className='mb-16'>
+          <div className='flex gap-2.5 items-center justify-center mb-3'>
+            <span>
+              <Icon
+                icon={'ph:house-simple-fill'}
+                width={20}
+                height={20}
+                className='text-primary'
+              />
+            </span>
+            <p className='text-base font-semibold text-dark/75 dark:text-white/75'>
+              Featured Properties
             </p>
-            <div className="grid grid-cols-2 gap-10">
-              <div className="flex items-center gap-4">
-                <div className="bg-dark/5 dark:bg-white/5 p-2.5 rounded-[6px]">
-                  <Image
-                    src={'/images/hero/sofa.svg'}
-                    alt='sofa'
-                    width={24}
-                    height={24}
-                    className='block dark:hidden'
-                    unoptimized={true}
-                  />
-                  <Image
-                    src={'/images/hero/dark-sofa.svg'}
-                    alt='sofa'
-                    width={24}
-                    height={24}
-                    className='hidden dark:block'
-                    unoptimized={true}
-                  />
-                </div>
-                <h6 className="">4 Bedrooms</h6>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="bg-dark/5 dark:bg-white/5 p-2.5 rounded-[6px]">
-                  <Image
-                    src={'/images/hero/tube.svg'}
-                    alt='tube'
-                    width={24}
-                    height={24}
-                    className='block dark:hidden'
-                    unoptimized={true}
-                  />
-                  <Image
-                    src={'/images/hero/dark-tube.svg'}
-                    alt='tube'
-                    width={24}
-                    height={24}
-                    className='hidden dark:block'
-                    unoptimized={true}
-                  />
-                </div>
-                <h6 className="">3 Bathrooms</h6>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="bg-dark/5 dark:bg-white/5 p-2.5 rounded-[6px]">
-                  <Image
-                    src={'/images/hero/parking.svg'}
-                    alt='parking'
-                    width={24}
-                    height={24}
-                    className='block dark:hidden'
-                    unoptimized={true}
-                  />
-                  <Image
-                    src={'/images/hero/dark-parking.svg'}
-                    alt='parking'
-                    width={24}
-                    height={24}
-                    className='hidden dark:block'
-                    unoptimized={true}
-                  />
-                </div>
-                <h6 className="">Parking Space</h6>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="bg-dark/5 dark:bg-white/5 p-2.5 rounded-[6px]">
-                  <Image
-                    src={'/images/hero/bar.svg'}
-                    alt='bar'
-                    width={24}
-                    height={24}
-                    className='block dark:hidden'
-                    unoptimized={true}
-                  />
-                  <Image
-                    src={'/images/hero/dark-bar.svg'}
-                    alt='bar'
-                    width={24}
-                    height={24}
-                    className='hidden dark:block'
-                    unoptimized={true}
-                  />
-                </div>
-                <h6 className="">2 Bar areas</h6>
-              </div>
-            </div>
-            <div className="flex gap-10">
-              <Link href="/contactus" className="py-4 px-8 bg-primary hover:bg-dark duration-300 rounded-full text-white">
-                Get in touch
-              </Link>
-              <div>
-                <h4 className="text-3xl text-dark dark:text-white font-medium">
-                  $1,650,500
-                </h4>
-                <p className="text-base text-dark/50">
-                  Discounted price
-                </p>
-              </div>
-            </div>
           </div>
+          <h2 className='text-40 lg:text-52 font-medium text-black dark:text-white text-center tracking-tight leading-11 mb-2'>
+            Your next chapter, in the perfect home.
+          </h2>
+          <p className='text-xm font-normal text-black/50 dark:text-white/50 text-center'>
+            Experience refined living with unique blend of modern design and timeless elegance
+          </p>
         </div>
+
+        <Carousel setApi={setApi} className='w-full'>
+          <CarouselContent className='-ml-1'>
+            {featuredProprty.map((item, index) => (
+              <CarouselItem
+                key={index}
+                className='pl-1 md:basis-1/2 lg:basis-1/3'>
+                <div className='p-1'>
+                  <div className='relative rounded-2xl overflow-hidden group'>
+                    <Link href={`/properties/${item.title}`}>
+                      <Image
+                        src={item.image}
+                        alt='featured property image'
+                        width={300}
+                        height={200}
+                        className='w-full object-cover rounded-2xl transition group-hover:scale-110 h-[300px]'
+                        unoptimized={true}
+                      />
+                    </Link>
+                    <Link href={`/properties/${item.title}`} className='absolute w-full h-full bg-gradient-to-b from-black/0 to-black/80 top-full flex flex-col justify-between pl-8 pb-8 group-hover:top-0 duration-500'>
+                      <div className='flex justify-end mt-6 mr-6'>
+                        <div className='bg-white text-dark rounded-full w-fit p-4'>
+                          <Icon icon='ph:arrow-right' width={24} height={24} />
+                        </div>
+                      </div>
+                      <div className='flex flex-col gap-2.5'>
+                        <h3 className='text-white text-2xl'>
+                          {item.title}
+                        </h3>
+                        <p className='text-white/80 text-base leading-6'>
+                          {item.description}
+                        </p>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className='py-2 text-center text-sm text-black dark:text-white'>
+            {current} of {count}
+          </div>
+        </Carousel>
       </div>
     </section>
   );
 };
 
 export default FeaturedProperty;
+    
