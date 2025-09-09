@@ -80,7 +80,7 @@ export default function ContactUs() {
             </div>
           </div>
           <div className='flex-1/2'>
-            <form action="https://formspree.io/f/xblaqoke" method="POST">
+            <form action="https://formspree.io/f/xyzdoyeq" method="POST">
               <div className='flex flex-col gap-8'>
                 <div className='flex flex-col lg:flex-row gap-6'>
                   <input
