@@ -42,26 +42,12 @@ const Header: React.FC = () => {
     <header className={`fixed h-24 py-1 z-50 w-full bg-transparent transition-all duration-300 lg:px-0 px-4 ${sticky ? "top-3" : "top-0"}`}>
       <nav className={`container mx-auto max-w-8xl flex items-center justify-between py-4 duration-300 ${sticky ? "shadow-lg bg-white dark:bg-dark rounded-full top-5 px-4 " : "shadow-none top-0"}`}>
         <div className='flex justify-between items-center gap-2 w-full'>
-          <div>
-            <Link href='/'>
-              <Image
-                src={'/images/header/dark-logo.svg'}
-                alt='logo'
-                width={150}
-                height={68}
-                unoptimized={true}
-                className={`${isHomepage ? sticky ? "block dark:hidden" : "hidden" : sticky ? "block dark:hidden" : "block dark:hidden"}`}
-              />
-              <Image
-                src={'/images/header/logo.svg'}
-                alt='logo'
-                width={150}
-                height={68}
-                unoptimized={true}
-                className={`${isHomepage ? sticky ? "hidden dark:block" : "block" : sticky ? "dark:block hidden" : "dark:block hidden"}`}
-              />
-            </Link>
-          </div>
+          <Link href="/" className={`${isHomepage ? sticky ? "block dark:hidden" : "hidden" : sticky ? "block dark:hidden" : "block dark:hidden"} text-xl font-bold`}>
+            Torre Lorenzo
+          </Link>
+          <Link href="/" className={`${isHomepage ? sticky ? "hidden dark:block" : "block" : sticky ? "dark:block hidden" : "dark:block hidden"} text-xl font-bold`}>
+            Torre Lorenzo
+          </Link>
           <div className='flex items-center gap-2 sm:gap-6'>
             <button
               className='hover:cursor-pointer'
@@ -94,7 +80,7 @@ const Header: React.FC = () => {
                 }`}
               >
                 <Icon icon={'ph:phone-bold'} width={24} height={24} />
-                +1-212-456-789
+                0931-214-6746
               </Link>
             </div>
             <div>
@@ -155,14 +141,7 @@ const Header: React.FC = () => {
                 {navLinks.map((item, index) => (
                   <NavLink key={index} item={item} onClick={() => setNavbarOpen(false)} />
                 ))}
-                <li className='flex items-center gap-4'>
-                  <Link href="/signin" className='py-4 px-8 bg-primary text-base leading-4 block w-fit text-white rounded-full border border-primary font-semibold mt-3 hover:bg-transparent hover:text-primary duration-300'>
-                    Sign In
-                  </Link>
-                  <Link href="/" className='py-4 px-8 bg-transparent border border-primary text-base leading-4 block w-fit text-primary rounded-full font-semibold mt-3 hover:bg-primary hover:text-white duration-300'>
-                    Sign up
-                  </Link>
-                </li>
+                
               </ul>
             </nav>
           </div>
@@ -175,7 +154,7 @@ const Header: React.FC = () => {
               hello@homely.com
             </Link>
             <Link href="#" className='text-base sm:text-xm font-medium text-inherit hover:text-primary'>
-              +1-212-456-7890{' '}
+            0931-214-6746{' '}
             </Link>
           </div>
         </div>

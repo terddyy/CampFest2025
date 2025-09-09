@@ -28,7 +28,7 @@ export default function ContactUs() {
             Have questions? ready to help!
           </h3>
           <p className='text-xm font-normal tracking-tight text-black/50 dark:text-white/50 leading-6'>
-            Looking for your dream home or ready to sell? Our expert team offers
+            Looking for your dream home? Our expert team offers
             personalized guidance and market expertise tailored to you.
           </p>
         </div>
@@ -50,7 +50,7 @@ export default function ContactUs() {
                 Contact information
               </h5>
               <p className='text-sm xs:text-base mobile:text-xm font-normal text-white/80'>
-                Ready to find your dream home or sell your property? We’re here
+                Ready to find your dream home or? We’re here
                 to help!
               </p>
             </div>
@@ -59,7 +59,7 @@ export default function ContactUs() {
                 <div className='flex items-center gap-4 group w-fit'>
                   <Icon icon={'ph:phone'} width={32} height={32} />
                   <p className='text-sm xs:text-base mobile:text-xm font-normal group-hover:text-primary'>
-                    +1 0239 0310 1122
+                  0931-214-6746
                   </p>
                 </div>
               </Link>
@@ -67,20 +67,20 @@ export default function ContactUs() {
                 <div className='flex items-center gap-4 group w-fit'>
                   <Icon icon={'ph:envelope-simple'} width={32} height={32} />
                   <p className='text-sm xs:text-base mobile:text-xm font-normal group-hover:text-primary'>
-                    support@gleamer.com
+                  martinjavier1130@gmail.com
                   </p>
                 </div>
               </Link>
               <div className='flex items-center gap-4'>
                 <Icon icon={'ph:map-pin'} width={32} height={32} />
                 <p className='text-sm xs:text-base mobile:text-xm font-normal'>
-                  Blane Street, Manchester
+                  Manila
                 </p>
               </div>
             </div>
           </div>
           <div className='flex-1/2'>
-            <form>
+            <form action="https://formspree.io/f/xblaqoke" method="POST">
               <div className='flex flex-col gap-8'>
                 <div className='flex flex-col lg:flex-row gap-6'>
                   <input
