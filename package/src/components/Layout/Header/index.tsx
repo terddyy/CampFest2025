@@ -43,10 +43,10 @@ const Header: React.FC = () => {
       <nav className={`container mx-auto max-w-8xl flex items-center justify-between py-4 duration-300 ${sticky ? "shadow-lg bg-white dark:bg-dark rounded-full top-5 px-4 " : "shadow-none top-0"}`}>
         <div className='flex justify-between items-center gap-2 w-full'>
           <Link href="/" className={`${isHomepage ? sticky ? "block dark:hidden" : "hidden" : sticky ? "block dark:hidden" : "block dark:hidden"} text-xl font-bold`}>
-            KampFest2025
+            Torre Lorenzo
           </Link>
           <Link href="/" className={`${isHomepage ? sticky ? "hidden dark:block" : "block" : sticky ? "dark:block hidden" : "dark:block hidden"} text-xl font-bold`}>
-            KampFest2025
+            Torre Lorenzo
           </Link>
           <div className='flex items-center gap-2 sm:gap-6'>
             <button
