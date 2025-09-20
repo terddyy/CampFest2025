@@ -1,9 +1,8 @@
-@import 'tailwindcss';
-@plugin 'tailwindcss-animate';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-@theme {
+:root {
   /* Gradient colors */
   --color-primary: #07be8a;
   --color-skyblue: #79adff;
@@ -41,15 +40,15 @@
 
   /* animation */
   --animate-slide: slide 20s linear infinite;
+}
 
-  @keyframes slide {
-    0% {
-      transform: translateX(0%);
-    }
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
 
-    100% {
-      transform: translateX(-103%);
-    }
+  100% {
+    transform: translateX(-103%);
   }
 }
 
@@ -71,7 +70,7 @@ html {
 }
 
 section {
-  @apply py-24
+  @apply py-24;
 }
 
 .blog-details p, .blog-details hr {
@@ -79,7 +78,7 @@ section {
 }
 
 .blog-details strong {
-  @apply font-bold dark:text-white;
+  @apply font-bold;
 }
 
 .blog-details ul {
@@ -87,7 +86,7 @@ section {
 }
 
 .blog-details ul li {
-  @apply mb-0 relative pl-4 text-base leading-[1.2] before:absolute before:w-1 before:h-1 before:rounded-full before:bg-dark dark:before:bg-white/60 before:top-2 before:left-0;
+  @apply mb-0 relative pl-4 text-base leading-[1.2] before:absolute before:w-1 before:h-1 before:rounded-full before:bg-dark before:top-2 before:left-0;
 }
 
 .blog-details ol {
@@ -95,29 +94,29 @@ section {
 }
 
 .blog-details ol li {
-  @apply mb-0
+  @apply mb-0;
 }
 
 .blog-details h1 {
-  @apply mb-8 text-3xl font-bold text-dark dark:text-white sm:text-4xl md:text-[40px] md:leading-[1.28];
+  @apply mb-8 text-3xl font-bold text-dark sm:text-4xl md:text-[40px] md:leading-[1.28];
 }
 
 .blog-details h2 {
-  @apply mb-2 text-2xl font-bold text-dark dark:text-white sm:text-3xl md:text-[35px] md:leading-[1.28];
+  @apply mb-2 text-2xl font-bold text-dark sm:text-3xl md:text-[35px] md:leading-[1.28];
 }
 
 .blog-details h3 {
-  @apply mb-6 text-2xl text-dark dark:text-white sm:leading-[40px];
+  @apply mb-6 text-2xl text-dark sm:leading-[40px];
 }
 
 .blog-details h4 {
-  @apply mb-6 text-xl leading-[1.2] text-dark dark:text-white;
+  @apply mb-6 text-xl leading-[1.2] text-dark;
 }
 
 .blog-details hr {
-  @apply border-white
+  @apply border-white;
 }
 
 .blog-details p {
-  @apply text-dark dark:text-white text-xm leading-[1.2]
+  @apply text-dark text-xm leading-[1.2];
 }
