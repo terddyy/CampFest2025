@@ -7,7 +7,6 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 
 const Header: React.FC = () => {
-  const pathname = usePathname()
 
 
   return (
