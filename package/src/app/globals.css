@@ -38,6 +38,12 @@
   --spacing-8xl: 87.5rem;
   /* 1400px */
 
+  --carousel-top-padding: 40px;
+
+  /* Header Height */
+  --header-height-mobile: 92px; /* Adjust based on your header's actual height on mobile */
+  --header-height-desktop: 96px; /* Adjust based on your header's actual height on desktop */
+
   /* animation */
   --animate-slide: slide 20s linear infinite;
 }
@@ -48,8 +54,16 @@
   }
 
   100% {
-    transform: translateX(-103%);
+    transform: translateX(-50%);
   }
+}
+
+.animate-scroll {
+  animation: var(--animate-slide);
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 html {

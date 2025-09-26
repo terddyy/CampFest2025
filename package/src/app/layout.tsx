@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={`${font.className} bg-white dark:bg-black antialiased`}>
+    <html lang='en' suppressHydrationWarning>
+      <body className={`${font.className} bg-white dark:bg-black antialiased min-h-screen`}>
         <NextTopLoader color="#07be8a" />
         
           <ThemeProvider

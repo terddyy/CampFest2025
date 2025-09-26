@@ -9,7 +9,7 @@ const Logo: React.FC = () => {
         width={150}
         height={68}
         unoptimized={true}
-        className='dark:hidden'
+        className='dark:hidden h-auto'
       />
       <Image
         src={'/images/header/logo.svg'}
@@ -17,7 +17,7 @@ const Logo: React.FC = () => {
         width={150}
         height={68}
         unoptimized={true}
-        className='dark:block hidden'
+        className='dark:block hidden h-auto'
       />
     </>
   )

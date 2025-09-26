@@ -12,15 +12,14 @@ const Header: React.FC = () => {
   const isHomepage = pathname === '/'
 
   return (
-    <header className={`fixed z-50 w-full top-0 transition-all duration-300`}>
-      <div className={``}> 
-        <nav
-          className={`
-            flex items-center justify-between transition-all duration-300
-            px-5 py-2 bg-white/30 backdrop-blur-lg shadow-lg py-4
-          `}
-        >
-          <div className='flex justify-between items-center gap-2 w-full'>
+    <header className={`fixed z-50 w-full top-0 transition-all duration-300 bg-white/30 backdrop-blur-lg shadow-lg py-4`}>
+      <nav
+        className={`
+          container max-w-8xl mx-auto px-5 2xl:px-0
+          flex items-center justify-between transition-all duration-300
+        `}
+      >
+        <div className='flex justify-between items-center gap-2 w-full'>
             <div className="flex items-center gap-2">
               <Link href="https://www.facebook.com/JustCampingChannel" target="_blank" rel="noopener noreferrer">
                 <Image src="/images/terdimage/2025-JustCamping logo-8x8 flag-01.png" alt="JustCamping Logo" width={91} height={91} className={`h-auto w-16`} />
@@ -36,13 +35,12 @@ const Header: React.FC = () => {
                   0931-214-6746
                 </a>
               </div>
-              <Link href="/tickets">
+              <Link href="/tickets" className="hidden md:block">
                 <Button size="sm" className={`rounded-full px-4 bg-black text-white`}>Buy tickets</Button>
               </Link>
             </div>
           </div>
         </nav>
-      </div>
     </header>
   )
 }
