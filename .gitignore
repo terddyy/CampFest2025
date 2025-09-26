@@ -1,0 +1,6 @@
+package/node_modules
+package/.next
+package/out
+package/dist
+package/src/api-routes.ts
+package/cursor/
