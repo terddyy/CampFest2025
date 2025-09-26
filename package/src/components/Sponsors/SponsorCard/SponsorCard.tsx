@@ -8,10 +8,10 @@ const SponsorCard: React.FC<{ item: Sponsor }> = ({ item }) => {
 
   return (
     <div>
-      <div className='relative rounded-2xl border border-dark/10 dark:border-white/10 group hover:shadow-3xl duration-300 dark:hover:shadow-white/20'>
+      <div className='relative rounded-2xl border border-dark/10 dark:border-white/10 group hover:shadow-3xl duration-300 dark:hover:shadow-white/20 bg-zinc-800/70'>
         <div className='overflow-hidden rounded-t-2xl flex items-center justify-center h-48 bg-gray-100 dark:bg-gray-800'>
           <Link href={`/sponsors/${slug}`}>
-            {logo && (
+            {logo ? (
               <Image
                 src={logo}
                 alt={name}
@@ -20,6 +20,10 @@ const SponsorCard: React.FC<{ item: Sponsor }> = ({ item }) => {
                 className='object-contain p-4 max-h-full max-w-full'
                 unoptimized={true}
               />
+            ) : (
+              <div className="flex items-center justify-center h-full w-full bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-xl font-bold rounded-t-2xl">
+                More sponsors soon!
+              </div>
             )}
           </Link>
           <div className='absolute top-6 right-6 p-4 bg-white rounded-full hidden group-hover:block'>
@@ -35,24 +39,24 @@ const SponsorCard: React.FC<{ item: Sponsor }> = ({ item }) => {
           <div className='flex flex-col gap-5 justify-between mb-6'>
             <div>
               <Link href={`/sponsors/${slug}`}>
-                <h3 className='text-xl font-medium text-black dark:text-white duration-300 group-hover:text-primary'>
+                <h3 className='text-xl font-medium text-white duration-300 group-hover:text-teal-400'>
                   {name}
                 </h3>
               </Link>
               <div className="h-20 overflow-hidden relative mb-4">
-                <p className='text-base font-normal text-black/50 dark:text-white/50'>
+                <p className='text-base font-normal text-gray-400'>
                   {description}
                 </p>
                 {description.length > 100 && (
-                  <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white dark:from-black to-transparent flex items-end justify-center">
-                    <Link href={`/sponsors/${slug}`} className="text-primary hover:underline">
+                  <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-zinc-800/70 dark:from-black to-transparent flex items-end justify-center">
+                    <Link href={`/sponsors/${slug}`} className="text-teal-400 hover:underline">
                       See more
                     </Link>
                   </div>
                 )}
               </div>
-              <div className="flex items-center gap-4 mt-4">
-                <Link href={website} target="_blank" rel="noopener noreferrer" className='text-primary hover:underline'>
+              <div className="flex items-center justify-center gap-4 mt-4">
+                <Link href={website} target="_blank" rel="noopener noreferrer" className='text-teal-400 hover:underline'>
                   Visit Website
                 </Link>
                 {item.facebook && (

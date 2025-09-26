@@ -1,19 +1,6 @@
 'use client'
 import Image from 'next/image'
 
-const logos = [
-  { src: '/images/terdimage/2025-JustCamping logo-8x8 flag-01.png', alt: 'Placeholder 1' },
-  { src: '/images/terdimage/CampFest2025 Logo.jpg', alt: 'Placeholder 2' },
-  { src: '/images/terdimage/kamp charlie nae.jpg', alt: 'Placeholder 3' },
-  { src: '/images/terdimage/campfestbg.png', alt: 'Placeholder 4' },
-  { src: '/images/terdimage/campfestimage.jpg', alt: 'Placeholder 5' },
-  { src: '/images/terdimage/2025-JustCamping logo-8x8 flag-01.png', alt: 'Placeholder 6' },
-  { src: '/images/terdimage/CampFest2025 Logo.jpg', alt: 'Placeholder 7' },
-  { src: '/images/terdimage/kamp charlie nae.jpg', alt: 'Placeholder 8' },
-  { src: '/images/terdimage/campfestbg.png', alt: 'Placeholder 9' },
-  { src: '/images/terdimage/campfestimage.jpg', alt: 'Placeholder 10' },
-];
-
 export default function SponsorsCarousel() {
   return (
     <section className='py-0'>
@@ -23,18 +10,105 @@ export default function SponsorsCarousel() {
         </h2>
         <div className='relative w-full overflow-hidden whitespace-nowrap py-4'>
           <div className='animate-scroll flex'>
-            {logos.map((logo, index) => (
-              <div key={index} className='shrink-0 flex justify-center items-center mx-10'>
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={140}
-                  height={50}
-                  className='h-8 sm:h-10 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
-                  priority={true}
-                />
-              </div>
-            ))}
+            <div className='shrink-0 flex justify-center items-center mx-10'>
+              <Image
+                src='/images/sponsorslogo/Bluetti Logo.png'
+                alt='Bluetti Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10'>
+              <Image
+                src='/images/sponsorslogo/Clapmoto Logo.jpg'
+                alt='Clapmoto Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10'>
+              <Image
+                src='/images/sponsorslogo/Gorilla LOGO-cropped.JPG'
+                alt='Gorilla Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10'>
+              <Image
+                src='/images/sponsorslogo/Maarte Campers Outdoor Gears Logo.jpg'
+                alt='Maarte Campers Outdoor Gears Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10'>
+              <Image
+                src='/images/sponsorslogo/Bluetti Logo.png'
+                alt='Bluetti Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10'>
+              <Image
+                src='/images/sponsorslogo/Clapmoto Logo.jpg'
+                alt='Clapmoto Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10'>
+              <Image
+                src='/images/sponsorslogo/Gorilla LOGO-cropped.JPG'
+                alt='Gorilla Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10'>
+              <Image
+                src='/images/sponsorslogo/Maarte Campers Outdoor Gears Logo.jpg'
+                alt='Maarte Campers Outdoor Gears Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
+            </div>
+            
+            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
+              Placeholder Logo
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
+              Placeholder Logo
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
+              Placeholder Logo
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
+              Placeholder Logo
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
+              Placeholder Logo
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
+              Placeholder Logo
+            </div>
           </div>
         </div>
       </div>
