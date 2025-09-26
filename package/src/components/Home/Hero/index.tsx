@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
                   width={600}
                   height={250}
                   priority={true}
-                  className="mx-auto lg:mx-0 h-auto"
+                  className="mx-auto lg:mx-0 h-auto w-auto"
                 />
               </h1>
               <div className='flex flex-col xs:flex-row justify-center lg:justify-start gap-3 sm:gap-4 mt-6'>
