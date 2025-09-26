@@ -1,4 +1,4 @@
-import { Sponsor } from '@/types/sponsor';
+import { Sponsor } from '@/types/sponsor'
 
 export const sponsors: Sponsor[] = [
   {
@@ -19,6 +19,7 @@ export const sponsors: Sponsor[] = [
     slug: 'clapmoto',
     logo: '/images/sponsorslogo/Clapmoto Logo.jpg',
     description: 'High-quality motor accessories and gear.',
+    website: '#',
     facebook: 'https://www.facebook.com/clapmotoproject',
     email: 'clapmotoproject@gmail.com',
     contactNumber: '+63 915 502 0130',
@@ -28,6 +29,7 @@ export const sponsors: Sponsor[] = [
     slug: 'gorilla',
     logo: '/images/sponsorslogo/Gorilla LOGO-cropped.JPG',
     description: 'Durable and reliable outdoor equipment.',
+    website: '#',
     facebook: 'https://www.facebook.com/GorillaOutdoors',
     instagram: 'https://www.instagram.com/gorilla_outdoors/',
     email: 'gandamthematrix@yahoo.com',
@@ -38,6 +40,7 @@ export const sponsors: Sponsor[] = [
     slug: 'maarte-campers-outdoor-gears',
     logo: '/images/sponsorslogo/Maarte Campers Outdoor Gears Logo.jpg',
     description: 'Stylish and functional outdoor camping gear.',
+    website: '#',
     facebook: 'https://www.facebook.com/mcoutdoorgears',
     instagram: 'https://www.instagram.com/mcoutdoorgears/',
     tiktok: 'https://www.tiktok.com/@maartecampers',
@@ -49,6 +52,7 @@ export const sponsors: Sponsor[] = [
   {
     name: 'More Sponsors Soon 1',
     slug: 'more-sponsors-soon-1',
+    logo: '/images/sponsorslogo/placeholder.png',
     description: 'Stay tuned for exciting new partnerships!',
     website: '#',
     facebook: 'https://www.facebook.com',
@@ -59,6 +63,7 @@ export const sponsors: Sponsor[] = [
   {
     name: 'More Sponsors Soon 2',
     slug: 'more-sponsors-soon-2',
+    logo: '/images/sponsorslogo/placeholder.png',
     description: 'We are always looking for new collaborators.',
     website: '#',
     facebook: 'https://www.facebook.com',
@@ -69,6 +74,7 @@ export const sponsors: Sponsor[] = [
   {
     name: 'More Sponsors Soon 3',
     slug: 'more-sponsors-soon-3',
+    logo: '/images/sponsorslogo/placeholder.png',
     description: 'Opportunity to join CampFest 2025.',
     website: '#',
     facebook: 'https://www.facebook.com',
@@ -79,6 +85,7 @@ export const sponsors: Sponsor[] = [
   {
     name: 'More Sponsors Soon 4',
     slug: 'more-sponsors-soon-4',
+    logo: '/images/sponsorslogo/placeholder.png',
     description: 'Become a part of our growing family.',
     website: '#',
     facebook: 'https://www.facebook.com',
@@ -89,6 +96,7 @@ export const sponsors: Sponsor[] = [
   {
     name: 'More Sponsors Soon 5',
     slug: 'more-sponsors-soon-5',
+    logo: '/images/sponsorslogo/placeholder.png',
     description: 'Reach out to us for sponsorship details.',
     website: '#',
     facebook: 'https://www.facebook.com',
@@ -97,3 +105,7 @@ export const sponsors: Sponsor[] = [
     linkedin: 'https://www.linkedin.com',
   },
 ];
+
+export async function getSponsors(): Promise<Sponsor[]> {
+  return sponsors;
+}

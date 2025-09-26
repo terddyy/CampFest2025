@@ -1,19 +1,24 @@
-import SponsorCard from '@/components/Sponsors/SponsorCard/SponsorCard'
+import SponsorCard from '@/components/Sponsors/SponsorCard'
 import { sponsors } from '@/app/api/sponsors'
 
-const SponsorListing: React.FC = () => {
+const SponsorList = () => {
   return (
-    <section className='pt-0! bg-black'>
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold text-white mb-4">Our Valued Sponsors</h2>
-        <p className="text-lg text-gray-300">We extend our sincere gratitude to all our sponsors who make CampFest 2025 possible. Their support helps us create an unforgettable experience for everyone.</p>
-      </div>
+    <section className='py-20 lg:py-[120px] bg-light dark:bg-dark relative z-[1]'>
       <div className='container max-w-8xl mx-auto px-5 2xl:px-0'>
-        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10'>
-          {sponsors.map((item, index) => (
-            <div key={index} className=''>
-              <SponsorCard item={item} />
-            </div>
+        <div className='text-center'>
+          <p className='text-dark/75 dark:text-white/75 text-base font-semibold flex items-center justify-center gap-2.5'>
+            Our Sponsors
+          </p>
+          <h2 className='lg:text-52 text-40 mt-4 mb-2 lg:max-w-full font-medium leading-[1.2] text-dark dark:text-white'>
+            Meet Our Amazing Sponsors
+          </h2>
+          <p className='text-dark/50 dark:text-white/50 text-lg lg:max-w-full leading-[1.3] md:max-w-3/4 mx-auto'>
+            We are proud to partner with these incredible brands and organizations for CampFest 2025.
+          </p>
+        </div>
+        <div className='grid grid-cols-12 gap-8 mt-14'>
+          {sponsors.map((sponsor, index) => (
+            <SponsorCard key={index} sponsor={sponsor} />
           ))}
         </div>
       </div>
@@ -21,4 +26,5 @@ const SponsorListing: React.FC = () => {
   )
 }
 
-export default SponsorListing
+export default SponsorList
+

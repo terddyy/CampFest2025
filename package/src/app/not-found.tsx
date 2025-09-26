@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { Metadata } from "next";
+import { Metadata } from "next/types";
 import { Icon } from "@iconify/react/dist/iconify.js"
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "404 Page | CampFest",
+  title: "404 Not Found | Homely",
 };
 
 const ErrorPage = () => {

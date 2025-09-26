@@ -1,23 +1,12 @@
-import HeroSub from "@/components/shared/HeroSub";
 import SponsorListing from "@/components/Sponsors/SponsorList";
 import React from "react";
-import { Metadata } from "next";
+import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
-    title: "Our Sponsors | CampFest",
+    title: "Our Sponsors | Homely",
 };
 
-const page = () => {
-    return (
-        <>
-            <HeroSub
-                title="Meet Our Valued Sponsors."
-                description="We are grateful for the generous support of our sponsors, making CampFest 2025 possible."
-                badge="Sponsors"
-            />
-            <SponsorListing />
-        </>
-    );
-};
+export default function SponsorsPage() {
+  return <SponsorListing />;
+}
 
-export default page;

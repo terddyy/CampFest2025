@@ -41,8 +41,8 @@ const handler = NextAuth({
 
           console.log("Invalid password.");
           return null;
-        } catch (authorizeError: Error) {
-          console.error("Error during NextAuth authorization:", authorizeError.message);
+        } catch (authorizeError: unknown) {
+          console.error("Error during NextAuth authorization:", authorizeError);
           throw new Error("An unexpected error occurred during authorization.");
         }
       },

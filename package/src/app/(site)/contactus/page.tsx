@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Metadata } from "next";
+import { Metadata } from "next/types";
 export const metadata: Metadata = {
     title: "Contact Us | Homely",
 };
