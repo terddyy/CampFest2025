@@ -5,9 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 interface SponsorPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
   searchParams?: { [key: string]: string | string[] | undefined }
 }
 
@@ -18,7 +18,8 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   }))
 }
 
-const SponsorDetailPage = async ({ params }: SponsorPageProps) => {
+const SponsorDetailPage = async ({ params: paramsPromise }: SponsorPageProps) => {
+  const params = await paramsPromise;
   const sponsors = await getSponsors()
   const sponsor = sponsors.find((s) => s.slug === params.slug)
 
