@@ -10,7 +10,7 @@ interface SponsorCardProps {
 const SponsorCard: React.FC<SponsorCardProps> = ({ sponsor }) => {
   return (
     <div className='col-span-12 lg:col-span-4 md:col-span-6'>
-      <div className='p-6 group'>
+      <div className='p-6 group border border-white rounded-xl bg-zinc-900/60 hover:bg-zinc-800/80 transition-all duration-300'>
         <Link href={`/sponsors/${sponsor.slug}`}>
           <div className='flex justify-center items-center h-40'>
             <Image src={sponsor.logo} alt={sponsor.name} width={150} height={150} className='h-auto w-auto max-h-full max-w-full' />
@@ -20,7 +20,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({ sponsor }) => {
         <p className='text-gray-400 text-base mt-2'>{sponsor.description}</p>
         <div className='mt-6 space-y-3'>
           {/* Visit Website Link */}
-          {sponsor.website && (
+          {sponsor.website && sponsor.website !== '#' && (
             <div className='flex justify-center'>
               <Link href={sponsor.website} target='_blank' rel='noopener noreferrer' className='text-teal-400 hover:text-teal-300 text-sm font-medium flex items-center gap-2 transition-all duration-300'>
                 <Icon icon='ph:globe' className='w-4 h-4' />
@@ -30,7 +30,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({ sponsor }) => {
           )}
           
           {/* Social Icons */}
-          <div className='flex flex-wrap justify-center gap-4'>
+          <div className='flex flex-nowrap justify-center gap-2 overflow-x-auto custom-scrollbar'>
             {sponsor.facebook && (
               <Link href={sponsor.facebook} target='_blank' rel='noopener noreferrer' className='text-blue-600 hover:text-blue-500 transition-all duration-300'>
                 <Icon icon='ph:facebook-logo' className='w-6 h-6' />

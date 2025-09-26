@@ -10,9 +10,7 @@ const SponsorList = () => {
     <section id="sponsors" className='py-20 lg:py-[120px] bg-black relative z-[1]'>
       <div className='container max-w-8xl mx-auto px-5 2xl:px-0'>
         <div className='text-center'>
-          <p className='text-white/75 text-base font-semibold flex items-center justify-center gap-2.5'>
-            Our Sponsors
-          </p>
+         
           <h2 className='lg:text-52 text-40 mt-4 mb-2 lg:max-w-full font-medium leading-[1.2] text-white'>
             Meet Our Amazing Sponsors
           </h2>

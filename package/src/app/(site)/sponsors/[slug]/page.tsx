@@ -130,7 +130,7 @@ const SponsorDetailPage = async ({ params: paramsPromise }: SponsorPageProps) =>
                     )}
 
                     {/* Social Media Links */}
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-2">
                       {sponsor.facebook && (
                         <Link 
                           href={sponsor.facebook} 
