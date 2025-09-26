@@ -11,7 +11,7 @@ const handler = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         console.log("Authorization attempt started.");
         try {
           if (!credentials?.email || !credentials?.password) {
@@ -41,7 +41,7 @@ const handler = NextAuth({
 
           console.log("Invalid password.");
           return null;
-        } catch (authorizeError: any) {
+        } catch (authorizeError: Error) {
           console.error("Error during NextAuth authorization:", authorizeError.message);
           throw new Error("An unexpected error occurred during authorization.");
         }

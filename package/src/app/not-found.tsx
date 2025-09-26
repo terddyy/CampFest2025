@@ -37,7 +37,7 @@ const ErrorPage = () => {
           Lost Your Way? Find Your Camp!
         </h2>
         <p className="text-lg text-black font-normal w-full mx-auto">
-          Don't fret, adventurer! We'll guide you back to the festival grounds.
+          Don&apos;t fret, adventurer! We&apos;ll guide you back to the festival grounds.
         </p>
         <Link href="/" className="mt-8 inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 border border-primary-500 bg-primary-500 text-black duration-300 hover:bg-transparent hover:text-black text-sm sm:text-base font-semibold rounded-full">
           <Icon icon="solar:arrow-left-linear" width={20} height={20} className="mr-2" />

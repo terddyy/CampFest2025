@@ -27,12 +27,6 @@ const FeaturedProperty: React.FC = () => {
     });
   }, [api]);
 
-  const handleDotClick = (index: number) => {
-    if (api) {
-      api.scrollTo(index);
-    }
-  };
-
 
   return (
     <section className='py-14 lg:py-28'>

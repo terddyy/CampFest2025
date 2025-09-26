@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const SponsorCard: React.FC<{ item: Sponsor }> = ({ item }) => {
-  const { name, logo, description, slug, website, facebook, instagram, twitter, linkedin, tiktok, lazada, shopee, email, contactNumber } = item
+  const { name, logo, description, slug, website } = item
 
   return (
     <div>

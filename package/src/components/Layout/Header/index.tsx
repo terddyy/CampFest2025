@@ -1,7 +1,7 @@
 'use client'
 import { Icon } from '@iconify/react'
 import Link from 'next/link'
-import { useEffect, useRef, useState, useCallback } from 'react'
+
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button'
 const Header: React.FC = () => {
   const pathname = usePathname()
 
-  const isHomepage = pathname === '/'
 
   return (
     <header className={`fixed z-50 w-full top-0 transition-all duration-300 bg-white/30 backdrop-blur-lg shadow-lg py-4`}>
