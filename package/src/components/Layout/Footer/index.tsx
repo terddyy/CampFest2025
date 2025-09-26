@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto max-w-8xl pt-14 px-4 sm:px-6 lg:px-0">
         <div className="flex justify-center items-center py-6 gap-6">
           <p className="text-white/40 text-sm text-center ">
-          <Link href="https://terd.zentariph.com" className="hover:text-primary" target="_blank" rel="noopener noreferrer"> ©2025 Zentari - Design & Developed by Terd Inocentes</Link>
+          <Link href="https://terd.zentariph.com" className="hover:text-primary" target="_blank" rel="noopener noreferrer"> ©2025 Zentari - Design & Developed by <span className="text-teal-400">Terd Inocentes</span></Link>
           </p>
           <div className="flex gap-8 items-center">
             <Link href="#" className="text-white/40 hover:text-primary text-sm">

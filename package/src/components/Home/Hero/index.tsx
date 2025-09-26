@@ -62,7 +62,8 @@ const Hero: React.FC = () => {
                   }}
                   className='px-6 py-3 sm:px-8 sm:py-4 border border-white bg-transparent text-white hover:bg-white hover:text-dark duration-300 text-sm sm:text-base font-semibold rounded-full hover:cursor-pointer active:scale-95 transition-all'
                   whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.9, opacity: 0.8 }}
+                  transition={{ duration: 0.1 }}
                 >
                   Sponsors
                 </motion.button>

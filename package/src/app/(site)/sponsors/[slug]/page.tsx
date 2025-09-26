@@ -3,6 +3,7 @@ import { getSponsors } from '@/app/api/sponsors'
 import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import BackButton from '@/components/shared/BackButton'
 
 interface SponsorPageProps {
   params: Promise<{
@@ -35,13 +36,7 @@ const SponsorDetailPage = async ({ params: paramsPromise }: SponsorPageProps) =>
           <div className="flex flex-col items-center justify-center text-center">
             {/* Back Button */}
             <div className="w-full flex justify-start mb-8">
-              <Link 
-                href="/#sponsors" 
-                className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300"
-              >
-                <Icon icon="ph:arrow-left" className="w-5 h-5" />
-                Back to Sponsors
-              </Link>
+              <BackButton href="/" text="Back to Home" />
             </div>
 
             {/* Sponsor Logo */}

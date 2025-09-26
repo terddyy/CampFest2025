@@ -2,8 +2,14 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type TicketType = 'adult' | 'child' | 'infant'
+
+interface Attendee {
+  firstName: string;
+  lastName: string;
+}
 
 type TicketConfig = {
   id: TicketType
@@ -25,10 +31,10 @@ function formatCurrency(amount: number) {
 
 export default function TicketsPage() {
   const [quantities, setQuantities] = React.useState<Record<TicketType, number>>({ adult: 0, child: 0, infant: 0 })
-  const [firstName, setFirstName] = React.useState('')
-  const [lastName, setLastName] = React.useState('')
+  const [attendees, setAttendees] = React.useState<Attendee[]>([])
   const [email, setEmail] = React.useState('')
-  const [phone, setPhone] = React.useState('')
+  const [phone, setPhone] = React.useState('') // Single phone state
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [message, setMessage] = React.useState('')
   const [errors, setErrors] = React.useState<string | null>(null)
 
@@ -52,12 +58,38 @@ export default function TicketsPage() {
       setErrors('Please select at least one ticket.')
       return
     }
-    if (!firstName || !lastName || !email || !phone) {
-      setErrors('Please complete all required fields.')
-      return
+    // Validation for attendees will go here
+    if (!attendees.every(a => a.firstName && a.lastName)) {
+      setErrors('Please complete all required fields for all attendees.')
+      return;
     }
-    alert(`Reserved ${selectedCount} ticket(s) for ${firstName} ${lastName}. Total: ${formatCurrency(total)}`)
+    if (!email) {
+      setErrors('Please provide a contact email.');
+      return;
+    }
+    if (!phone) {
+      setErrors('Please provide a contact phone number.');
+      return;
+    }
+    if (!selectedFile) {
+      setErrors('Please upload your payment receipt.');
+      return;
+    }
+    alert(`Reserved ${selectedCount} ticket(s) for ${attendees.map(a => `${a.firstName} ${a.lastName}`).join(', ')}. Contact Email: ${email}. Contact Phone: ${phone}. Receipt: ${selectedFile?.name}. Total: ${formatCurrency(total)}`);
   }
+
+  // Calculate the total number of selected tickets
+  const totalTicketsSelected = Object.values(quantities).reduce((sum, qty) => sum + qty, 0);
+
+  // Effect to update attendees array when ticket quantities change
+  React.useEffect(() => {
+    setAttendees(prev => {
+      const newAttendees = Array.from({ length: totalTicketsSelected }, (_, i) => 
+        prev[i] || { firstName: '', lastName: '' }
+      );
+      return newAttendees;
+    });
+  }, [totalTicketsSelected]);
 
   return (
     <section className='container max-w-6xl mx-auto px-5 pt-28 pb-20'>
@@ -107,18 +139,81 @@ export default function TicketsPage() {
         <form onSubmit={handleSubmit} className='bg-white dark:bg-dark/40 rounded-2xl border border-black/10 dark:border-white/10 p-6'>
           <p className='text-xl font-semibold mb-4'>Registration Details</p>
 
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-            <input className='h-11 rounded-md px-3 border border-black/10 dark:border-white/10 bg-transparent' placeholder='First name *' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-            <input className='h-11 rounded-md px-3 border border-black/10 dark:border-white/10 bg-transparent' placeholder='Last name *' value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          {Array.from({ length: totalTicketsSelected }).map((_, attendeeIndex) => (
+            <div key={attendeeIndex} className="border border-black/10 dark:border-white/10 rounded-2xl p-6 mb-4">
+              <p className='text-lg font-semibold mb-3'>Attendee {attendeeIndex + 1}</p>
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                <input 
+                  className='h-11 rounded-md px-3 border border-black/10 dark:border-white/10 bg-transparent' 
+                  placeholder='First name *' 
+                  value={attendees[attendeeIndex]?.firstName || ''} 
+                  onChange={(e) => setAttendees(prev => 
+                    prev.map((a, i) => i === attendeeIndex ? { ...a, firstName: e.target.value } : a)
+                  )}
+                />
+                <input 
+                  className='h-11 rounded-md px-3 border border-black/10 dark:border-white/10 bg-transparent' 
+                  placeholder='Last name *' 
+                  value={attendees[attendeeIndex]?.lastName || ''} 
+                  onChange={(e) => setAttendees(prev => 
+                    prev.map((a, i) => i === attendeeIndex ? { ...a, lastName: e.target.value } : a)
+                  )}
+                />
+              </div>
+              <div className='mt-4'>
+                {/* Email is now collected once for the buyer */}
+              </div>
+              <div className='mt-4'>
+                {/* Phone is now collected once for the buyer */}
+              </div>
+            </div>
+          ))}
+
+          <div className='mt-4'>
+            <input 
+              type='email' 
+              className='w-full h-11 rounded-md px-3 border border-black/10 dark:border-white/10 bg-transparent' 
+              placeholder='your.email@example.com *' 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+            />
           </div>
           <div className='mt-4'>
-            <input type='email' className='w-full h-11 rounded-md px-3 border border-black/10 dark:border-white/10 bg-transparent' placeholder='your.email@example.com *' value={email} onChange={(e) => setEmail(e.target.value)} />
-          </div>
-          <div className='mt-4'>
-            <input className='w-full h-11 rounded-md px-3 border border-black/10 dark:border-white/10 bg-transparent' placeholder='+63 9XX XXX XXXX *' value={phone} onChange={(e) => setPhone(e.target.value)} />
+            <input 
+              className='w-full h-11 rounded-md px-3 border border-black/10 dark:border-white/10 bg-transparent' 
+              placeholder='+63 9XX XXX XXXX *' 
+              value={phone} 
+              onChange={(e) => setPhone(e.target.value)} 
+            />
           </div>
           <div className='mt-4'>
             <textarea className='w-full min-h-28 rounded-md p-3 border border-black/10 dark:border-white/10 bg-transparent' placeholder='Any special requests or messages...' value={message} onChange={(e) => setMessage(e.target.value)} />
+          </div>
+
+          <div className='mt-6 p-6 bg-zinc-900/60 rounded-2xl border border-white/10 text-center'>
+            <p className='text-white text-xl font-semibold mb-3'>Scan to Pay via GCash</p>
+            <div className='w-40 h-40 bg-white mx-auto flex items-center justify-center rounded-lg overflow-hidden'>
+              {/* Placeholder for GCash QR Code - Replace src with your actual GCash QR image */}
+              <Image 
+                src={'/images/terdimage/gcash_qr_placeholder.png'} 
+                alt='GCash QR Code' 
+                width={160} 
+                height={160} 
+                className='w-full h-full object-contain' 
+              />
+            </div>
+            <p className='text-gray-400 text-sm mt-3'>Upload your payment receipt after scanning.</p>
+          </div>
+
+          <div className='mt-6'>
+            <label htmlFor='receipt-upload' className='block text-white text-sm font-medium mb-2'>Upload Proof of Payment *</label>
+            <input 
+              type='file' 
+              id='receipt-upload'
+              className='w-full p-3 border border-black/10 dark:border-white/10 bg-transparent rounded-md text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-teal-500/20 file:text-teal-400 hover:file:bg-teal-500/30' 
+              onChange={(e) => setSelectedFile(e.target.files ? e.target.files[0] : null)}
+            />
+            {selectedFile && <p className='text-gray-400 text-sm mt-2'>Selected file: {selectedFile.name}</p>}
           </div>
 
           {errors && <p className='text-destructive mt-3 text-sm'>{errors}</p>}
