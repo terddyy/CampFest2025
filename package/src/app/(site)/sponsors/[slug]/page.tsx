@@ -1,17 +1,7 @@
 import React from 'react';
-import { Metadata } from 'next';
 import { sponsors } from '@/app/api/sponsors';
 import Image from 'next/image';
 import Link from 'next/link';
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const sponsor = sponsors.find((s) => s.slug === slug);
-
-  return {
-    title: sponsor ? `${sponsor.name} | Sponsors` : 'Sponsor Not Found',
-  };
-}
 
 const SponsorDetailsPage: React.FC<{ params: Promise<{ slug: string }> }> = async ({ params }) => {
   const { slug } = await params;
