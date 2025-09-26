@@ -4,32 +4,9 @@ import { Icon } from '@iconify/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-interface Metadata {
-  title: string | { default: string; template?: string | null };
-  description?: string;
-  // Add other properties of Metadata if needed, though for this specific use case, title and description are sufficient.
-}
-
 interface SponsorPageProps {
   params: {
     slug: string
-  }
-  searchParams?: { [key: string]: string | string[] | undefined }
-}
-
-export async function generateMetadata({ params }: SponsorPageProps): Promise<Metadata> {
-  const sponsors = await getSponsors()
-  const sponsor = sponsors.find((sponsor) => sponsor.slug === params.slug)
-
-  if (!sponsor) {
-    return {
-      title: 'Sponsor Not Found',
-    }
-  }
-
-  return {
-    title: `${sponsor.name} - CampFest 2025 Sponsor`,
-    description: sponsor.description,
   }
 }
 

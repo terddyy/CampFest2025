@@ -52,7 +52,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({ sponsor }) => {
               </Link>
             )}
             {sponsor.tiktok && (
-              <Link href={sponsor.tiktok} target='_blank' rel='noopener noreferrer' className='text-white hover:text-gray-800 transition-all duration-300'>
+              <Link href={sponsor.tiktok} target='_blank' rel='noopener noreferrer' className='text-white hover:text-gray-300 transition-all duration-300'>
                 <Icon icon='ic:baseline-tiktok' className='w-6 h-6' />
               </Link>
             )}
