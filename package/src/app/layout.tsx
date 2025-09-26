@@ -5,6 +5,7 @@ import Header from '@/components/Layout/Header'
 import Footer from '@/components/Layout/Footer'
 import { ThemeProvider } from 'next-themes'
 import NextTopLoader from 'nextjs-toploader';
+import { Analytics } from "@vercel/analytics/next"
 
 const font = Bricolage_Grotesque({ subsets: ["latin"] });
 
@@ -31,7 +32,7 @@ export default function RootLayout({
             {children}
             <Footer />
           </ThemeProvider>
-        
+        <Analytics />
       </body>
     </html>
   )

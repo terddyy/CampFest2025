@@ -26,8 +26,8 @@ const Hero: React.FC = () => {
                 <Image
                   src={'/images/terdimage/CampFest2025 Logo.jpg'}
                   alt='Campfest 2025 Logo'
-                  width={500}
-                  height={200}
+                  width={600}
+                  height={250}
                   priority={true}
                   className="mx-auto lg:mx-0"
                 />
