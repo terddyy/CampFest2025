@@ -4,7 +4,7 @@ import { sponsors } from '@/app/api/sponsors';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export async function generateMetadata({ params }: any): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const sponsor = sponsors.find((s) => s.slug === params.slug);
 
   return {
@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   };
 }
 
-const SponsorDetailsPage: React.FC<any> = ({ params }) => {
+const SponsorDetailsPage: React.FC<{ params: { slug: string } }> = ({ params }) => {
   const sponsor = sponsors.find((s) => s.slug === params.slug);
 
   if (!sponsor) {
