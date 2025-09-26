@@ -6,6 +6,7 @@ import SponsorsCarousel from '@/components/Home/Sponsors/SponsorsCarousel'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 import { Icon } from '@iconify/react'
+import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
   // const [showSponsors, setShowSponsors] = React.useState(false);
@@ -55,9 +56,16 @@ const Hero: React.FC = () => {
                 <Link href="/tickets" className='px-6 py-3 sm:px-8 sm:py-4 border border-white bg-white text-dark duration-300 hover:bg-transparent hover:text-white text-sm sm:text-base font-semibold rounded-full hover:cursor-pointer'>
                   Buy tickets
                 </Link>
-                <Link href="/#properties-section" className='px-6 py-3 sm:px-8 sm:py-4 border border-white bg-transparent text-white hover:bg-white hover:text-dark duration-300 text-sm sm:text-base font-semibold rounded-full hover:cursor-pointer active:scale-95 transition-all'>
+                <motion.button
+                  onClick={() => {
+                    document.getElementById('sponsors')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className='px-6 py-3 sm:px-8 sm:py-4 border border-white bg-transparent text-white hover:bg-white hover:text-dark duration-300 text-sm sm:text-base font-semibold rounded-full hover:cursor-pointer active:scale-95 transition-all'
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   Sponsors
-                </Link>
+                </motion.button>
               </div>
             </div>
 
