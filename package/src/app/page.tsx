@@ -1,11 +1,11 @@
 import Hero from '@/components/Home/Hero'
-import Properties from '@/components/Home/Properties'
+import SponsorListing from "@/components/Sponsors/SponsorList";
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <Properties />
+      <SponsorListing />
     </main>
   )
 }

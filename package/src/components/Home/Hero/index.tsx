@@ -5,6 +5,7 @@ import Link from 'next/link'
 import SponsorsCarousel from '@/components/Home/Sponsors/SponsorsCarousel'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
+import { Icon } from '@iconify/react'
 
 const Hero: React.FC = () => {
   // const [showSponsors, setShowSponsors] = React.useState(false);
@@ -32,6 +33,14 @@ const Hero: React.FC = () => {
         <div className='container max-w-8xl mx-auto px-5 2xl:px-0 flex flex-col justify-center flex-grow min-h-[calc(100vh-var(--header-height-mobile))] lg:min-h-[calc(100vh-var(--header-height-desktop))] pb-10'>
           <div className='grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-8'>
             <div className='text-white text-center lg:text-start z-10 order-2 lg:order-1'>
+              <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
+                <Icon icon="solar:user-bold" width={24} height={24} className="text-white" />
+                <p className="text-xl font-semibold text-white">200 Attending</p>
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+              </div>
               <h1 className='text-inherit text-4xl sm:text-6xl md:text-7xl font-semibold -tracking-wider mt-4 mb-6 leading-tight'>
                 <Image
                   src={'/images/terdimage/CampFest2025 Logo.jpg'}
