@@ -1,6 +1,6 @@
 declare module 'next' {
   export interface PageProps {
-    params: { [key: string]: string | string[] };
-    searchParams?: { [key: string]: string | string[] | undefined };
+    params: Promise<{ [key: string]: string | string[] }>;
+    searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
   }
 }
