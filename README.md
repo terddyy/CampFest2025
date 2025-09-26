@@ -26,5 +26,5 @@ deleting branch if you dont need that branch:
 
 git branch -d test (delete locally)
 
-git push origin --delete feature/my-new-feature (delete remotely) -->
+git push origin --delete feature/my-new-feature (delete remotely) hmmm -->
 
