@@ -8,9 +8,10 @@ interface SponsorPageProps {
   params: {
     slug: string
   }
+  searchParams?: { [key: string]: string | string[] | undefined }
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const sponsors = await getSponsors()
   return sponsors.map((sponsor) => ({
     slug: sponsor.slug,
