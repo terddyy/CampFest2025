@@ -2,7 +2,7 @@
 import { Icon } from '@iconify/react'
 import Link from 'next/link'
 
-import { usePathname } from 'next/navigation'
+
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 
