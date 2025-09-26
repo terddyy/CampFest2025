@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 type TicketType = 'adult' | 'child' | 'infant'
 
@@ -60,6 +61,12 @@ export default function TicketsPage() {
 
   return (
     <section className='container max-w-6xl mx-auto px-5 pt-28 pb-20'>
+      <Link href="/" className="inline-flex items-center text-primary-500 hover:text-primary-600 transition-colors duration-200 mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Back to Home
+      </Link>
       <h1 className='text-3xl font-semibold mb-6'>Tickets</h1>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
         <div className='bg-white dark:bg-dark/40 rounded-2xl border border-black/10 dark:border-white/10 p-6'>

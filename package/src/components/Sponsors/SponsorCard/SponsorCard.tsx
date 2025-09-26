@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const SponsorCard: React.FC<{ item: Sponsor }> = ({ item }) => {
-  const { name, logo, description, slug, website } = item
+  const { name, logo, description, slug, website, facebook, instagram, twitter, linkedin, tiktok, lazada, shopee, email, contactNumber } = item
 
   return (
     <div>
@@ -56,9 +56,11 @@ const SponsorCard: React.FC<{ item: Sponsor }> = ({ item }) => {
                 )}
               </div>
               <div className="flex items-center justify-center gap-4 mt-4">
-                <Link href={website} target="_blank" rel="noopener noreferrer" className='text-teal-400 hover:underline'>
-                  Visit Website
-                </Link>
+                {item.website && (
+                  <Link href={website} target="_blank" rel="noopener noreferrer" className='text-teal-400 hover:underline'>
+                    Visit Website
+                  </Link>
+                )}
                 {item.facebook && (
                   <Link href={item.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                     <Icon icon="ri:facebook-fill" width={24} height={24} className="text-blue-600 hover:text-blue-800 transition-colors duration-200" />
@@ -77,6 +79,31 @@ const SponsorCard: React.FC<{ item: Sponsor }> = ({ item }) => {
                 {item.linkedin && (
                   <Link href={item.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                     <Icon icon="ri:linkedin-fill" width={24} height={24} className="text-blue-700 hover:text-blue-900 transition-colors duration-200" />
+                  </Link>
+                )}
+                {item.tiktok && (
+                  <Link href={item.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                    <Icon icon="ri:tiktok-fill" width={24} height={24} className="text-white hover:text-gray-300 transition-colors duration-200" />
+                  </Link>
+                )}
+                {item.lazada && (
+                  <Link href={item.lazada} target="_blank" rel="noopener noreferrer" aria-label="Lazada">
+                    <Icon icon="ri:shopping-bag-fill" width={24} height={24} className="text-red-500 hover:text-red-700 transition-colors duration-200" />
+                  </Link>
+                )}
+                {item.shopee && (
+                  <Link href={item.shopee} target="_blank" rel="noopener noreferrer" aria-label="Shopee">
+                    <Icon icon="simple-icons:shopee" width={24} height={24} className="text-orange-500 hover:text-orange-700 transition-colors duration-200" />
+                  </Link>
+                )}
+                {item.email && (
+                  <Link href={`mailto:${item.email}`} target="_blank" rel="noopener noreferrer" aria-label="Email">
+                    <Icon icon="ri:mail-fill" width={24} height={24} className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors duration-200" />
+                  </Link>
+                )}
+                {item.contactNumber && (
+                  <Link href={`tel:${item.contactNumber}`} target="_blank" rel="noopener noreferrer" aria-label="Contact Number">
+                    <Icon icon="ri:phone-fill" width={24} height={24} className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors duration-200" />
                   </Link>
                 )}
               </div>

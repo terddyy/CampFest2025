@@ -24,14 +24,17 @@ export default function RootLayout({
       <body className={`${font.className} bg-white dark:bg-black antialiased min-h-screen`}>
         <NextTopLoader color="#07be8a" />
         
-          <ThemeProvider
-            attribute='class'
-            enableSystem={true}
-            defaultTheme='light'>
-            <Header />
-            {children}
-            <Footer />
-          </ThemeProvider>
+          <div className="relative">
+            <ThemeProvider
+              attribute='class'
+              enableSystem={true}
+              defaultTheme='light'>
+              <Header />
+              {children}
+              <Footer />
+            </ThemeProvider>
+            <a href="/tickets" className="fixed top-4 right-4 z-50 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg md:hidden">Buy Tickets</a>
+          </div>
         <Analytics />
       </body>
     </html>
