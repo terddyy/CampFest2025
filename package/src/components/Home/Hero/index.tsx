@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
             <div className='text-white text-center lg:text-start z-10 order-2 lg:order-1'>
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
                 <Icon icon="solar:user-bold" width={24} height={24} className="text-white" />
-                <p className="text-xl font-semibold text-white">200 Attending</p>
+                <p className="text-xl font-semibold text-white">100 attending</p>
                 <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
@@ -88,7 +88,7 @@ const Hero: React.FC = () => {
                             alt='heroImg'
                             width={1200}
                             height={1120}
-                            priority={false}
+                            priority={true}
                             unoptimized={true}
                             className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />

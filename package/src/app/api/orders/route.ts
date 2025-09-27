@@ -49,7 +49,8 @@ export async function POST(req: Request) {
           { status: 500 }
         );
       }
-      paymentReceiptUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${uploadData.path}`;
+      // Ensure no leading '@' or extra characters are prepended to the URL
+      paymentReceiptUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${uploadData.path}`.replace(/^@/, '');
     }
 
     // Insert into orders table
