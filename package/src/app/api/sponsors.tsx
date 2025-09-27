@@ -4,7 +4,7 @@ export const sponsors: Sponsor[] = [
   {
     name: 'Bluetti Southeast Asia',
     slug: 'bluetti-southeast-asia',
-    logo: '/images/sponsorslogo/Bluetti Logo.png',
+    logo: '/images/sponsorslogo/bluettivectorized.png',
     description: 'Technology Pioneer in Clean Energy',
     website: 'https://www.bluettipower.ph/',
     facebook: 'https://www.facebook.com/BluettiSEA',
@@ -17,7 +17,7 @@ export const sponsors: Sponsor[] = [
   {
     name: 'CLAP MOTO Project',
     slug: 'clap-moto-project',
-    logo: '/images/sponsorslogo/Clapmoto Logo.jpg',
+    logo: '/images/sponsorslogo/clapmotovectorized.png',
     description: 'Apparel & clothing Services',
     website: '#',
     facebook: 'https://www.facebook.com/clapmotoproject',
@@ -27,7 +27,7 @@ export const sponsors: Sponsor[] = [
   {
     name: 'Gorilla Outdoors',
     slug: 'gorilla-outdoors',
-    logo: '/images/sponsorslogo/Gorilla LOGO-cropped.JPG',
+    logo: '/images/sponsorslogo/gorillavectorized.png',
     description: 'Gorilla Outdoors is a premier outdoor gear store dedicated to empowering adventurers and nature enthusiasts.',
     website: '#',
     facebook: 'https://www.facebook.com/GorillaOutdoors',
@@ -38,7 +38,7 @@ export const sponsors: Sponsor[] = [
   {
     name: 'Maarte Campers Outdoor Gears',
     slug: 'maarte-campers-outdoor-gears',
-    logo: '/images/sponsorslogo/Maarte Campers Outdoor Gears Logo.jpg',
+    logo: '/images/sponsorslogo/maartecampersvectorized.png',
     description: 'All your essentials in one stop!',
     website: '#',
     facebook: 'https://www.facebook.com/mcoutdoorgears',
@@ -52,7 +52,7 @@ export const sponsors: Sponsor[] = [
   {
     name: 'COBB Philippines',
     slug: 'cobb-philippines',
-    logo: '/images/sponsorslogo/placeholder.png', // Assuming a placeholder image for now
+    logo: '/images/sponsorslogo/cobbvectorized.png', // Assuming a placeholder image for now
     description: 'The Ultimate All-In-One Portable Outdoor Cooker',
     website: 'https://cobbgrill.com.ph/',
     facebook: 'https://www.facebook.com/profile.php?id=61566773966055',
