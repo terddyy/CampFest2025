@@ -4,12 +4,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 interface SponsorCardProps {
-  sponsor: Sponsor
+  sponsor: Sponsor;
+  className?: string; // Add this line
 }
 
-const SponsorCard: React.FC<SponsorCardProps> = ({ sponsor }) => {
+const SponsorCard: React.FC<SponsorCardProps> = ({ sponsor, className }) => {
   return (
-    <div className='col-span-12 lg:col-span-4 md:col-span-6 min-h-[300px]'>
+    <div className={`col-span-12 lg:col-span-4 md:col-span-6 min-h-[300px] ${className || ''}`}>
       <div className='p-6 group border border-white rounded-xl bg-zinc-900/60 hover:bg-zinc-800/80 transition-all duration-300 h-full flex flex-col'>
         <Link href={`/sponsors/${sponsor.slug}`}>
           <div className='flex justify-center items-center h-40'>

@@ -34,7 +34,7 @@ const authOptions: AuthOptions = {
           }
 
           return null;
-        } catch (authorizeError: unknown) {
+        } catch (error: unknown) {
           throw new Error("An unexpected error occurred during authorization.");
         }
       },
