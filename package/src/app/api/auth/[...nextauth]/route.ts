@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { supabase } from "@/lib/supabaseClient";
 import bcrypt from "bcryptjs";
 
-const handler = NextAuth({
+const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -75,6 +75,8 @@ const handler = NextAuth({
       return session;
     },
   },
-});
+};
 
-export { handler as GET, handler as POST };
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST, authOptions };

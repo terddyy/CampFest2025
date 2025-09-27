@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -37,6 +37,8 @@ export default function TicketsPage() {
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [message, setMessage] = React.useState('')
   const [errors, setErrors] = React.useState<string | null>(null)
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [confirmationOrderId, setConfirmationOrderId] = useState<string | null>(null);
 
   const total = React.useMemo(() => {
     return (
@@ -50,17 +52,17 @@ export default function TicketsPage() {
     setQuantities((prev) => ({ ...prev, [id]: Math.max(0, next) }))
   }
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setErrors(null)
-    const selectedCount = Object.values(quantities).reduce((a, b) => a + b, 0)
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setErrors(null);
+    setMessage('');
+    const selectedCount = Object.values(quantities).reduce((a, b) => a + b, 0);
     if (selectedCount === 0) {
-      setErrors('Please select at least one ticket.')
-      return
+      setErrors('Please select at least one ticket.');
+      return;
     }
-    // Validation for attendees will go here
     if (!attendees.every(a => a.firstName && a.lastName)) {
-      setErrors('Please complete all required fields for all attendees.')
+      setErrors('Please complete all required fields for all attendees.');
       return;
     }
     if (!email) {
@@ -75,7 +77,45 @@ export default function TicketsPage() {
       setErrors('Please upload your payment receipt.');
       return;
     }
-    alert(`Reserved ${selectedCount} ticket(s) for ${attendees.map(a => `${a.firstName} ${a.lastName}`).join(', ')}. Contact Email: ${email}. Contact Phone: ${phone}. Receipt: ${selectedFile?.name}. Total: ${formatCurrency(total)}`);
+
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('total', total.toString());
+    formData.append('message', message);
+    formData.append('attendees', JSON.stringify(attendees));
+    if (selectedFile) {
+      formData.append('paymentReceipt', selectedFile);
+    }
+
+    try {
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErrors(data.error || 'Failed to place order.');
+        return;
+      }
+
+      setMessage(data.message || 'Order placed successfully!');
+      // Optionally, clear the form or redirect
+      setQuantities({ adult: 0, child: 0, infant: 0 });
+      setAttendees([]);
+      setEmail('');
+      setPhone('');
+      setSelectedFile(null);
+      setMessage(''); // Clear message after successful submission
+      setConfirmationOrderId(data.orderId);
+      setShowConfirmationModal(true);
+
+    } catch (err) {
+      console.error('Error submitting order:', err);
+      setErrors('An unexpected error occurred. Please try again.');
+    }
   }
 
   // Calculate the total number of selected tickets
@@ -223,6 +263,17 @@ export default function TicketsPage() {
           </div>
         </form>
       </div>
+
+      {showConfirmationModal && confirmationOrderId && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-dark/40 rounded-lg p-6 shadow-xl max-w-sm w-full text-center">
+            <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Order Placed!</h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">Your order has been placed successfully.</p>
+            <p className="text-gray-700 dark:text-gray-300 font-semibold mb-6">Order ID: {confirmationOrderId}</p>
+            <Button onClick={() => setShowConfirmationModal(false)} className="w-full">OK</Button>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
