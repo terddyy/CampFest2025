@@ -58,7 +58,7 @@ const FeaturedProperty: React.FC = () => {
             {featuredProprty.map((item, index) => (
               <CarouselItem
                 key={index}
-                className='pl-1 md:basis-1/2 lg:basis-1/3'>
+                className='pl-1 xs:basis-full sm:basis-1/2 md:basis-1/2 lg:basis-1/3'>
                 <div className='p-1'>
                   <div className='relative rounded-2xl overflow-hidden group'>
                     <Link href={`/properties/${item.title}`}>

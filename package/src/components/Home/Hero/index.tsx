@@ -56,6 +56,9 @@ const Hero: React.FC = () => {
                 <Link href="/tickets" className='px-6 py-3 sm:px-8 sm:py-4 border border-white bg-white text-dark duration-300 hover:bg-transparent hover:text-white text-sm sm:text-base font-semibold rounded-full hover:cursor-pointer'>
                   Buy tickets
                 </Link>
+                <Link href="#info-section" className='px-6 py-3 sm:px-8 sm:py-4 border border-white bg-transparent text-white hover:bg-white hover:text-dark duration-300 text-sm sm:text-base font-semibold rounded-full hover:cursor-pointer'>
+                  Event Info
+                </Link>
                 <motion.button
                   onClick={() => {
                     document.getElementById('sponsors')?.scrollIntoView({ behavior: 'smooth' });
@@ -82,7 +85,7 @@ const Hero: React.FC = () => {
                 className="w-full"
               >
                 <CarouselContent>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[250px] sm:h-[400px] md:h-[500px]">
                         <Image
                             src={'/images/hero_image/KampCharlie Nae Homepage pic1.jpg'}
                             alt='heroImg'

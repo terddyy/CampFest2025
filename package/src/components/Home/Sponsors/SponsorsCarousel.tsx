@@ -8,39 +8,39 @@ export default function SponsorsCarousel() {
         
         <div className='relative w-full overflow-hidden whitespace-nowrap py-4'>
           <div className='animate-scroll flex'>
-            <div className='shrink-0 flex justify-center items-center mx-10'>
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
               <Image
-                src='/images/sponsorslogo/Bluetti Logo.png'
-                alt='Bluetti Logo'
+                src='/images/sponsorslogo/bluettivectorized.png'
+                alt='Bluetti Southeast Asia Logo'
                 width={200}
                 height={75}
                 className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
                 priority={true}
               />
             </div>
-            <div className='shrink-0 flex justify-center items-center mx-10'>
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
               <Image
-                src='/images/sponsorslogo/Clapmoto Logo.jpg'
-                alt='Clapmoto Logo'
+                src='/images/sponsorslogo/clapmotovectorized.png'
+                alt='CLAP MOTO Project Logo'
                 width={200}
                 height={75}
                 className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
                 priority={true}
               />
             </div>
-            <div className='shrink-0 flex justify-center items-center mx-10'>
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
               <Image
-                src='/images/sponsorslogo/Gorilla LOGO-cropped.JPG'
-                alt='Gorilla Logo'
+                src='/images/sponsorslogo/gorillavectorized.png'
+                alt='Gorilla Outdoors Logo'
                 width={200}
                 height={75}
                 className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
                 priority={true}
               />
             </div>
-            <div className='shrink-0 flex justify-center items-center mx-10'>
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
               <Image
-                src='/images/sponsorslogo/Maarte Campers Outdoor Gears Logo.jpg'
+                src='/images/sponsorslogo/maartecampersvectorized.png'
                 alt='Maarte Campers Outdoor Gears Logo'
                 width={200}
                 height={75}
@@ -48,39 +48,50 @@ export default function SponsorsCarousel() {
                 priority={true}
               />
             </div>
-            <div className='shrink-0 flex justify-center items-center mx-10'>
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
               <Image
-                src='/images/sponsorslogo/Bluetti Logo.png'
-                alt='Bluetti Logo'
+                src='/images/sponsorslogo/cobbvectorized.png'
+                alt='COBB Philippines Logo'
                 width={200}
                 height={75}
                 className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
                 priority={true}
               />
             </div>
-            <div className='shrink-0 flex justify-center items-center mx-10'>
+            {/* Duplicate for seamless scrolling */}
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
               <Image
-                src='/images/sponsorslogo/Clapmoto Logo.jpg'
-                alt='Clapmoto Logo'
+                src='/images/sponsorslogo/bluettivectorized.png'
+                alt='Bluetti Southeast Asia Logo'
                 width={200}
                 height={75}
                 className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
                 priority={true}
               />
             </div>
-            <div className='shrink-0 flex justify-center items-center mx-10'>
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
               <Image
-                src='/images/sponsorslogo/Gorilla LOGO-cropped.JPG'
-                alt='Gorilla Logo'
+                src='/images/sponsorslogo/clapmotovectorized.png'
+                alt='CLAP MOTO Project Logo'
                 width={200}
                 height={75}
                 className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
                 priority={true}
               />
             </div>
-            <div className='shrink-0 flex justify-center items-center mx-10'>
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
               <Image
-                src='/images/sponsorslogo/Maarte Campers Outdoor Gears Logo.jpg'
+                src='/images/sponsorslogo/gorillavectorized.png'
+                alt='Gorilla Outdoors Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
+              <Image
+                src='/images/sponsorslogo/maartecampersvectorized.png'
                 alt='Maarte Campers Outdoor Gears Logo'
                 width={200}
                 height={75}
@@ -88,24 +99,15 @@ export default function SponsorsCarousel() {
                 priority={true}
               />
             </div>
-            
-            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
-              Placeholder Logo
-            </div>
-            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
-              Placeholder Logo
-            </div>
-            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
-              Placeholder Logo
-            </div>
-            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
-              Placeholder Logo
-            </div>
-            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
-              Placeholder Logo
-            </div>
-            <div className='shrink-0 flex justify-center items-center mx-10 w-[200px] h-[75px] bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-sm font-bold rounded-md'>
-              Placeholder Logo
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
+              <Image
+                src='/images/sponsorslogo/cobbvectorized.png'
+                alt='COBB Philippines Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
             </div>
           </div>
         </div>

@@ -12,14 +12,11 @@ const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        console.log("Authorization attempt started.");
         try {
           if (!credentials?.email || !credentials?.password) {
-            console.log("Missing credentials.");
             return null;
           }
 
-          console.log("Attempting to fetch user from Supabase with email:", credentials.email);
           const { data: user, error } = await supabase
             .from("users") // Assuming your user table is named 'users'
             .select("id, email, password")
@@ -27,22 +24,17 @@ const authOptions: AuthOptions = {
             .single();
 
           if (error || !user) {
-            console.error("Supabase query error or user not found:", error?.message || "User not found.");
             throw new Error("Invalid credentials.");
           }
 
-          console.log("User fetched successfully. Comparing passwords.");
           const isValidPassword = await bcrypt.compare(credentials.password, user.password);
 
           if (isValidPassword) {
-            console.log("Password is valid. Returning user.");
             return { id: user.id, name: user.email, email: user.email }; // You might want to fetch more user details
           }
 
-          console.log("Invalid password.");
           return null;
         } catch (authorizeError: unknown) {
-          console.error("Error during NextAuth authorization:", authorizeError);
           throw new Error("An unexpected error occurred during authorization.");
         }
       },

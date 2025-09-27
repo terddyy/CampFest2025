@@ -99,7 +99,7 @@ const Categories = () => {
               </Link>
             </div>
           </div>
-          <div className="lg:col-span-3 col-span-6">
+          <div className="lg:col-span-3 col-span-6 md:col-span-12 xs:col-span-12">
             <div className="relative rounded-2xl overflow-hidden group">
               <Link href="/appartment">
                 <Image
@@ -128,7 +128,7 @@ const Categories = () => {
               </Link>
             </div>
           </div>
-          <div className="lg:col-span-3 col-span-6">
+          <div className="lg:col-span-3 col-span-6 md:col-span-12 xs:col-span-12">
             <div className="relative rounded-2xl overflow-hidden group">
               <Link href="/office-spaces">
                 <Image

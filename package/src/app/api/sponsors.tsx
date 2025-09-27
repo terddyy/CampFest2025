@@ -2,10 +2,10 @@ import { Sponsor } from '@/types/sponsor'
 
 export const sponsors: Sponsor[] = [
   {
-    name: 'Bluetti',
-    slug: 'bluetti',
+    name: 'Bluetti Southeast Asia',
+    slug: 'bluetti-southeast-asia',
     logo: '/images/sponsorslogo/Bluetti Logo.png',
-    description: 'Innovative power solutions for outdoor adventures.',
+    description: 'Technology Pioneer in Clean Energy',
     website: 'https://www.bluettipower.ph/',
     facebook: 'https://www.facebook.com/BluettiSEA',
     instagram: 'https://www.instagram.com/bluetti_philippines',
@@ -15,20 +15,20 @@ export const sponsors: Sponsor[] = [
     email: 'sale-asia@bluettipower.com',
   },
   {
-    name: 'Clapmoto',
-    slug: 'clapmoto',
+    name: 'CLAP MOTO Project',
+    slug: 'clap-moto-project',
     logo: '/images/sponsorslogo/Clapmoto Logo.jpg',
-    description: 'High-quality motor accessories and gear.',
+    description: 'Apparel & clothing Services',
     website: '#',
     facebook: 'https://www.facebook.com/clapmotoproject',
     email: 'clapmotoproject@gmail.com',
     contactNumber: '+63 915 502 0130',
   },
   {
-    name: 'Gorilla',
-    slug: 'gorilla',
+    name: 'Gorilla Outdoors',
+    slug: 'gorilla-outdoors',
     logo: '/images/sponsorslogo/Gorilla LOGO-cropped.JPG',
-    description: 'Durable and reliable outdoor equipment.',
+    description: 'Gorilla Outdoors is a premier outdoor gear store dedicated to empowering adventurers and nature enthusiasts.',
     website: '#',
     facebook: 'https://www.facebook.com/GorillaOutdoors',
     instagram: 'https://www.instagram.com/gorilla_outdoors/',
@@ -39,7 +39,7 @@ export const sponsors: Sponsor[] = [
     name: 'Maarte Campers Outdoor Gears',
     slug: 'maarte-campers-outdoor-gears',
     logo: '/images/sponsorslogo/Maarte Campers Outdoor Gears Logo.jpg',
-    description: 'Stylish and functional outdoor camping gear.',
+    description: 'All your essentials in one stop!',
     website: '#',
     facebook: 'https://www.facebook.com/mcoutdoorgears',
     instagram: 'https://www.instagram.com/mcoutdoorgears/',
@@ -48,6 +48,17 @@ export const sponsors: Sponsor[] = [
     shopee: 'http://shopee.ph/maartecampers',
     email: 'mcoutdoorgears@gmail.com',
     contactNumber: '+63 920 802 0327',
+  },
+  {
+    name: 'COBB Philippines',
+    slug: 'cobb-philippines',
+    logo: '/images/sponsorslogo/placeholder.png', // Assuming a placeholder image for now
+    description: 'The Ultimate All-In-One Portable Outdoor Cooker',
+    website: 'https://cobbgrill.com.ph/',
+    facebook: 'https://www.facebook.com/profile.php?id=61566773966055',
+    instagram: 'https://www.instagram.com/cobbgrill.ph/',
+    tiktok: 'https://www.tiktok.com/@cobbgrill.ph',
+    email: 'info@cobbgrill.com.ph',
   },
 ];
 
