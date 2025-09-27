@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabaseClient";
 // import { getServerSession } from "next-auth";
 // import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     // For demonstration, authorization is commented out.
     // In a real application, implement role-based access control here.

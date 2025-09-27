@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabaseClient";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"; // Assuming authOptions are exported from here
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     // For demonstration, let's assume any logged-in user can view this for now.
     // In a real application, you would implement role-based access control here.
