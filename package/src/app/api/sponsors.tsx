@@ -1,0 +1,67 @@
+import { Sponsor } from '@/types/sponsor'
+
+export const sponsors: Sponsor[] = [
+  {
+    name: 'Bluetti Southeast Asia',
+    slug: 'bluetti-southeast-asia',
+    logo: '/images/sponsorslogo/Bluetti Logo.png',
+    description: 'Technology Pioneer in Clean Energy',
+    website: 'https://www.bluettipower.ph/',
+    facebook: 'https://www.facebook.com/BluettiSEA',
+    instagram: 'https://www.instagram.com/bluetti_philippines',
+    tiktok: 'https://www.tiktok.com/@bluetti.philippines',
+    lazada: 'https://bit.ly/41v9r00',
+    shopee: 'https://bit.ly/3HVHKa3',
+    email: 'sale-asia@bluettipower.com',
+  },
+  {
+    name: 'CLAP MOTO Project',
+    slug: 'clap-moto-project',
+    logo: '/images/sponsorslogo/clapmotovectorized.png',
+    description: 'Apparel & clothing Services',
+    website: '#',
+    facebook: 'https://www.facebook.com/clapmotoproject',
+    email: 'clapmotoproject@gmail.com',
+    contactNumber: '+63 915 502 0130',
+  },
+  {
+    name: 'Gorilla Outdoors',
+    slug: 'gorilla-outdoors',
+    logo: '/images/sponsorslogo/Gorilla LOGO-cropped.JPG',
+    description: 'Gorilla Outdoors is a premier outdoor gear store dedicated to empowering adventurers and nature enthusiasts.',
+    website: '#',
+    facebook: 'https://www.facebook.com/GorillaOutdoors',
+    instagram: 'https://www.instagram.com/gorilla_outdoors/',
+    email: 'gandamthematrix@yahoo.com',
+    contactNumber: '+63 927 760 8338',
+  },
+  {
+    name: 'Maarte Campers Outdoor Gears',
+    slug: 'maarte-campers-outdoor-gears',
+    logo: '/images/sponsorslogo/Maarte Campers Outdoor Gears Logo.jpg',
+    description: 'All your essentials in one stop!',
+    website: '#',
+    facebook: 'https://www.facebook.com/mcoutdoorgears',
+    instagram: 'https://www.instagram.com/mcoutdoorgears/',
+    tiktok: 'https://www.tiktok.com/@maartecampers',
+    lazada: 'http://lazada.com.ph/shop/maarte-campers-outdoor-gears',
+    shopee: 'http://shopee.ph/maartecampers',
+    email: 'mcoutdoorgears@gmail.com',
+    contactNumber: '+63 920 802 0327',
+  },
+  {
+    name: 'COBB Philippines',
+    slug: 'cobb-philippines',
+    logo: '/images/sponsorslogo/Cobb Philippines Logo (1).jpg',
+    description: 'The Ultimate All-In-One Portable Outdoor Cooker',
+    website: 'https://cobbgrill.com.ph/',
+    facebook: 'https://www.facebook.com/profile.php?id=61566773966055',
+    instagram: 'https://www.instagram.com/cobbgrill.ph/',
+    tiktok: 'https://www.tiktok.com/@cobbgrill.ph',
+    email: 'info@cobbgrill.com.ph',
+  },
+];
+
+export async function getSponsors(): Promise<Sponsor[]> {
+  return sponsors;
+}
