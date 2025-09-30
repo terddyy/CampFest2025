@@ -65,12 +65,11 @@ export const sponsors: Sponsor[] = [
     slug: 'camp-zion',
     logo: '/images/sponsorslogo/camp zion.jpg',
     description: 'Camping solutions for every Filipino. By campers, for campers!',
-    website: undefined,
+    website: '#',
     facebook: 'https://www.facebook.com/campzionofficial',
     instagram: 'https://www.instagram.com/campzionphils/',
     lazada: 'https://www.lazada.com.ph/shop/campzion',
     shopee: 'https://shopee.ph/campzion',
-    email: undefined,
   },
 ];
 
