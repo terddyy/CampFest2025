@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
         <div className='container max-w-8xl mx-auto px-5 2xl:px-0 flex flex-col justify-center flex-grow min-h-[calc(100vh-var(--header-height-mobile))] lg:min-h-[calc(100vh-var(--header-height-desktop))] pb-10'>
           <div className='grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-8'>
             <div className='text-white text-center lg:text-start z-10 order-2 lg:order-1'>
-              <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
+              <div className="flex items-center justify-center lg:justify-start gap-2 -mt-32">
                 <Icon icon="solar:user-bold" width={24} height={24} className="text-white" />
                 <p className="text-xl font-semibold text-white">200 attending</p>
                 <span className="relative flex h-3 w-3">
@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                 </span>
               </div>
-              <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
+              <div className="flex items-center justify-center lg:justify-start gap-2">
                 <Icon icon="mdi:car" width={24} height={24} className="text-white" />
                 <p className="text-xl font-semibold text-white">100 rigs</p>
               </div>
@@ -77,7 +77,7 @@ const Hero: React.FC = () => {
               </div>
             </div>
 
-            <div className='w-full order-1 lg:order-2 pt-10 lg:pt-[var(--carousel-top-padding)]'>
+            <div className='w-full order-1 lg:order-2 pt-0 lg:pt-0 mt-[-50px]'>
               <Carousel
                 plugins={[
                   Autoplay({ delay: 3000 })

@@ -12,9 +12,9 @@ export default function SponsorsCarousel() {
               <Image
                 src='/images/sponsorslogo/Bluetti Logo.png'
                 alt='Bluetti Southeast Asia Logo'
-                width={200}
-                height={75}
-                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                width={300}
+                height={150}
+                className='h-24 sm:h-32 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
                 priority={true}
               />
             </div>
@@ -22,9 +22,9 @@ export default function SponsorsCarousel() {
               <Image
                 src='/images/sponsorslogo/clapmotovectorized.png'
                 alt='CLAP MOTO Project Logo'
-                width={200}
-                height={75}
-                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                width={300}
+                height={150}
+                className='h-24 sm:h-32 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
                 priority={true}
               />
             </div>
@@ -63,9 +63,9 @@ export default function SponsorsCarousel() {
               <Image
                 src='/images/sponsorslogo/Bluetti Logo.png'
                 alt='Bluetti Southeast Asia Logo'
-                width={200}
-                height={75}
-                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                width={300}
+                height={150}
+                className='h-24 sm:h-32 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
                 priority={true}
               />
             </div>
@@ -73,9 +73,9 @@ export default function SponsorsCarousel() {
               <Image
                 src='/images/sponsorslogo/clapmotovectorized.png'
                 alt='CLAP MOTO Project Logo'
-                width={200}
-                height={75}
-                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                width={300}
+                height={150}
+                className='h-24 sm:h-32 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
                 priority={true}
               />
             </div>
