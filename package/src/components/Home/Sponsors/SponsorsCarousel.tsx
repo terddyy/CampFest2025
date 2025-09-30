@@ -58,6 +58,16 @@ export default function SponsorsCarousel() {
                 priority={true}
               />
             </div>
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
+              <Image
+                src='/images/sponsorslogo/camp zion.jpg'
+                alt='Camp Zion Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
+            </div>
             {/* Duplicate for infinite scroll effect */}
             <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
               <Image
@@ -103,6 +113,16 @@ export default function SponsorsCarousel() {
               <Image
                 src='/images/sponsorslogo/Cobb Philippines Logo (1).jpg'
                 alt='COBB Philippines Logo'
+                width={200}
+                height={75}
+                className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'
+                priority={true}
+              />
+            </div>
+            <div className='shrink-0 flex justify-center items-center mx-5 sm:mx-10'>
+              <Image
+                src='/images/sponsorslogo/camp zion.jpg'
+                alt='Camp Zion Logo'
                 width={200}
                 height={75}
                 className='h-12 sm:h-16 w-auto object-contain grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all duration-300'

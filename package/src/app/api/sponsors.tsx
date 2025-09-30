@@ -60,6 +60,16 @@ export const sponsors: Sponsor[] = [
     tiktok: 'https://www.tiktok.com/@cobbgrill.ph',
     email: 'info@cobbgrill.com.ph',
   },
+  {
+    name: 'Camp Zion',
+    slug: 'camp-zion',
+    logo: '/images/sponsorslogo/camp zion.jpg',
+    description: 'A place for camping enthusiasts.',
+    website: '#',
+    facebook: '#',
+    instagram: '#',
+    email: '#',
+  },
 ];
 
 export async function getSponsors(): Promise<Sponsor[]> {
