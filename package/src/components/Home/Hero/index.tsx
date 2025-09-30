@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
                   width={600}
                   height={250}
                   priority={true}
-                  className="mx-auto lg:mx-0 h-auto w-auto"
+                  className="mx-auto lg:mx-0 h-44 w-auto"
                 />
               </h1>
               <div className='flex flex-col xs:flex-row justify-center lg:justify-start gap-3 sm:gap-4 mt-6'>
@@ -91,7 +91,7 @@ const Hero: React.FC = () => {
                 <CarouselContent>
                     <CarouselItem className="h-[250px] sm:h-[400px] md:h-[500px]">
                         <Image
-                            src={'/images/hero_image/KampCharlie Nae Homepage pic1.jpg'}
+                            src={'/images/hero_image/new_hero_img/Homepage1.jpg'}
                             alt='heroImg'
                             width={1200}
                             height={1120}
@@ -102,7 +102,7 @@ const Hero: React.FC = () => {
                     </CarouselItem>
                     <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
                         <Image
-                            src={'/images/hero_image/pic1.jpg'}
+                            src={'/images/hero_image/new_hero_img/Homepage2.jpg'}
                             alt='heroImg'
                             width={1200}
                             height={1120}
@@ -113,7 +113,7 @@ const Hero: React.FC = () => {
                     </CarouselItem>
                     <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
                         <Image
-                            src={'/images/hero_image/pic2.jpg'}
+                            src={'/images/hero_image/new_hero_img/Homepage3.jpg'}
                             alt='heroImg'
                             width={1200}
                             height={1120}
@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
                     </CarouselItem>
                     <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
                         <Image
-                            src={'/images/hero_image/pic3.jpg'}
+                            src={'/images/hero_image/new_hero_img/Homepage4.jpg'}
                             alt='heroImg'
                             width={1200}
                             height={1120}
@@ -135,7 +135,7 @@ const Hero: React.FC = () => {
                     </CarouselItem>
                     <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
                         <Image
-                            src={'/images/hero_image/pic4.jpg'}
+                            src={'/images/hero_image/new_hero_img/Homepage5.jpg'}
                             alt='heroImg'
                             width={1200}
                             height={1120}
@@ -146,7 +146,7 @@ const Hero: React.FC = () => {
                     </CarouselItem>
                     <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
                         <Image
-                            src={'/images/hero_image/pic5.jpg'}
+                            src={'/images/hero_image/new_hero_img/Homepage6.jpg'}
                             alt='heroImg'
                             width={1200}
                             height={1120}
@@ -157,7 +157,7 @@ const Hero: React.FC = () => {
                     </CarouselItem>
                     <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
                         <Image
-                            src={'/images/hero_image/pic6.jpg'}
+                            src={'/images/hero_image/new_hero_img/Homepage7.jpg'}
                             alt='heroImg'
                             width={1200}
                             height={1120}
@@ -168,7 +168,95 @@ const Hero: React.FC = () => {
                     </CarouselItem>
                     <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
                         <Image
-                            src={'/images/hero_image/pic7.jpg'}
+                            src={'/images/hero_image/new_hero_img/Homepage9.jpg'}
+                            alt='heroImg'
+                            width={1200}
+                            height={1120}
+                            priority={false}
+                            unoptimized={true}
+                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                        />
+                    </CarouselItem>
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                        <Image
+                            src={'/images/hero_image/new_hero_img/Homepage8.jpg'}
+                            alt='heroImg'
+                            width={1200}
+                            height={1120}
+                            priority={false}
+                            unoptimized={true}
+                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                        />
+                    </CarouselItem>
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                        <Image
+                            src={'/images/hero_image/new_hero_img/Homepage10.jpg'}
+                            alt='heroImg'
+                            width={1200}
+                            height={1120}
+                            priority={false}
+                            unoptimized={true}
+                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                        />
+                    </CarouselItem>
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                        <Image
+                            src={'/images/hero_image/new_hero_img/Homepage11(1).jpg'}
+                            alt='heroImg'
+                            width={1200}
+                            height={1120}
+                            priority={false}
+                            unoptimized={true}
+                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                        />
+                    </CarouselItem>
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                        <Image
+                            src={'/images/hero_image/new_hero_img/Homepage12.jpg'}
+                            alt='heroImg'
+                            width={1200}
+                            height={1120}
+                            priority={false}
+                            unoptimized={true}
+                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                        />
+                    </CarouselItem>
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                        <Image
+                            src={'/images/hero_image/new_hero_img/Homepage13.jpg'}
+                            alt='heroImg'
+                            width={1200}
+                            height={1120}
+                            priority={false}
+                            unoptimized={true}
+                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                        />
+                    </CarouselItem>
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                        <Image
+                            src={'/images/hero_image/new_hero_img/Homepage14.jpg'}
+                            alt='heroImg'
+                            width={1200}
+                            height={1120}
+                            priority={false}
+                            unoptimized={true}
+                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                        />
+                    </CarouselItem>
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                        <Image
+                            src={'/images/hero_image/new_hero_img/Homepage15.jpg'}
+                            alt='heroImg'
+                            width={1200}
+                            height={1120}
+                            priority={false}
+                            unoptimized={true}
+                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                        />
+                    </CarouselItem>
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                        <Image
+                            src={'/images/hero_image/new_hero_img/Homepage16.jpg'}
                             alt='heroImg'
                             width={1200}
                             height={1120}
