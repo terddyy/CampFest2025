@@ -49,7 +49,6 @@ export default function TicketsPage() {
     const fetchDisplayMetrics = async () => {
       try {
         const response = await fetch('/api/admin/metrics');
-        const data = await response.json();
         if (response.ok) {
           // setDisplayAttendees(data.totalAttendees); // Removed
           // setDisplayRigs(data.totalRigs); // Removed
