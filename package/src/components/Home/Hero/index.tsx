@@ -9,15 +9,9 @@ import { Icon } from '@iconify/react'
 import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
-  // const [showSponsors, setShowSponsors] = React.useState(false);
-
-  // React.useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setShowSponsors(true);
-  //   }, 50); // A small delay to allow initial render
-
-  //   return () => clearTimeout(timer);
-  // }, []);
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  );
 
   return (
     <section 
@@ -79,14 +73,10 @@ const Hero: React.FC = () => {
 
             <div className='w-full order-1 lg:order-2 pt-0 lg:pt-0 mt-[-50px]'>
               <Carousel
-                plugins={[
-                  Autoplay({ delay: 3000 })
-                ]}
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
+                plugins={[plugin.current]}
                 className="w-full"
+                onMouseEnter={plugin.current.stop}
+                onMouseLeave={plugin.current.reset}
               >
                 <CarouselContent>
                     <CarouselItem className="h-[250px] sm:h-[400px] md:h-[500px]">
