@@ -5,7 +5,7 @@ import { authOptions } from "@/lib/authOptions";
 
 export async function PATCH(
   req: NextRequest,
-  context: { params: { orderId: string } }
+  context: any
 ) {
   try {
     const session = await getServerSession(authOptions);
