@@ -35,7 +35,9 @@ export default function RootLayout({
               enableSystem={true}
               defaultTheme='dark'>
               {!isTicketsPage && <Header />}
-              {children}
+              <div className="pt-16">
+                {children}
+              </div>
               <Footer />
             </ThemeProvider>
             <a href="/tickets" className="fixed top-4 right-4 z-50 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg md:hidden">Buy Tickets</a>

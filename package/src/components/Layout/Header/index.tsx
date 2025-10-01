@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import React from 'react'
 import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 const Header: React.FC = () => {
 
@@ -72,6 +73,18 @@ const Header: React.FC = () => {
             <Link href="/login" onClick={toggleMobileMenu}>
               <Button size="lg" className={`rounded-full px-8 bg-blue-500 text-white`}>Sign In</Button>
             </Link>
+            {session?.user && (
+              <Button
+                size="lg"
+                className={`rounded-full px-8 bg-red-500 text-white`}
+                onClick={() => {
+                  signOut({ callbackUrl: '/' });
+                  toggleMobileMenu();
+                }}
+              >
+                Sign Out
+              </Button>
+            )}
             <Button size="lg" className="rounded-full px-8 bg-red-500 text-white" onClick={toggleMobileMenu}>
               Close
             </Button>

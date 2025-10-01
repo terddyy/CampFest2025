@@ -2,6 +2,7 @@
 
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 
 interface User {
@@ -41,17 +42,15 @@ interface Attendee {
 const DashboardPage = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [users, setUsers] = useState<User[]>([]);
-  const [usersError, setUsersError] = useState<string | null>(null);
+  
   const [orders, setOrders] = useState<Order[]>([]);
   const [ordersError, setOrdersError] = useState<string | null>(null);
-  const [confirmedAttendees, setConfirmedAttendees] = useState<Attendee[]>([]);
-  const [confirmedAttendeesError, setConfirmedAttendeesError] = useState<string | null>(null);
 
   const fetchOrders = async () => {
     try {
       const response = await fetch('/api/admin/orders');
       const data = await response.json();
+      console.log('API response for orders:', data);
 
       if (!response.ok) {
         setOrdersError(data.error || 'Failed to fetch orders.');
@@ -64,21 +63,6 @@ const DashboardPage = () => {
     }
   };
 
-  const fetchConfirmedAttendees = async () => {
-    try {
-      const response = await fetch('/api/admin/confirmed-attendees');
-      const data = await response.json();
-
-      if (!response.ok) {
-        setConfirmedAttendeesError(data.error || 'Failed to fetch confirmed attendees.');
-        return;
-      }
-      setConfirmedAttendees(data.confirmedAttendees);
-    } catch (err) {
-      console.error('Failed to fetch confirmed attendees:', err);
-      setConfirmedAttendeesError('An unexpected error occurred while fetching confirmed attendees.');
-    }
-  };
 
   const handleVerifyPayment = async (orderId: string) => {
     if (!window.confirm('Are you sure you want to mark this order as paid?')) {
@@ -152,27 +136,12 @@ const DashboardPage = () => {
       router.push('/'); // Redirect to home page or an unauthorized page
     }
 
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch('/api/admin/users');
-        const data = await response.json();
-
-        if (!response.ok) {
-          setUsersError(data.error || 'Failed to fetch users.');
-          return;
-        }
-        setUsers(data.users);
-      } catch (err) {
-        console.error('Failed to fetch users:', err);
-        setUsersError('An unexpected error occurred while fetching users.');
-      }
-    };
+    
 
     if (status === "authenticated" && session) {
       // Only fetch users if authenticated
-      fetchUsers();
+      
       fetchOrders(); // Fetch orders as well
-      fetchConfirmedAttendees(); // Fetch confirmed attendees as well
     }
   }, [status, session, router]);
 
@@ -186,72 +155,20 @@ const DashboardPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-gray-900 p-4">
-      <h1 className="text-4xl font-bold mb-4">Welcome to the Dashboard, {session.user?.name || session.user?.email}!</h1>
-      <p className="text-lg mb-8">You are logged in as an administrator.</p>
-
-      <div className="w-full max-w-4xl bg-white rounded-2xl border border-black/10 p-8 shadow-md mb-8">
-        <h2 className="text-2xl font-bold mb-4">Confirmed Attendees</h2>
+      <div className="w-full max-w-4xl flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-4xl font-bold">Welcome, {session.user?.name || session.user?.email}!</h1>
+          <p className="text-lg text-gray-600">You are logged in as an administrator.</p>
+        </div>
         <button
-          onClick={fetchConfirmedAttendees}
-          className="mb-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-200"
+          onClick={() => signOut({ callbackUrl: '/' })}
+          className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors duration-200"
         >
-          Show All Confirmed Attendees
+          Sign Out
         </button>
-        {confirmedAttendeesError && <p className="text-red-500 mb-4">{confirmedAttendeesError}</p>}
-        {confirmedAttendees.length === 0 && !confirmedAttendeesError && <p>No confirmed attendees found.</p>}
-        {confirmedAttendees.length > 0 && (
-          <div className="overflow-x-auto mt-4">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">First Name</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Name</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {confirmedAttendees.map((attendee) => (
-                  <tr key={attendee.id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{attendee.id}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendee.first_name}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{attendee.last_name}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
       </div>
 
-      <div className="w-full max-w-4xl bg-white rounded-2xl border border-black/10 p-8 shadow-md">
-        <h2 className="text-2xl font-bold mb-4">Registered Users</h2>
-        {usersError && <p className="text-red-500 mb-4">{usersError}</p>}
-        {users.length === 0 && !usersError && <p>No registered users found.</p>}
-        {users.length > 0 && (
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registered At</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {users.map((user) => (
-                  <tr key={user.id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.id}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {new Date(user.created_at).toLocaleString()}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
+
 
       <div className="w-full max-w-4xl bg-white rounded-2xl border border-black/10 p-8 shadow-md mt-8">
         <h2 className="text-2xl font-bold mb-4">Customer Orders</h2>
@@ -318,12 +235,7 @@ const DashboardPage = () => {
         )}
       </div>
 
-      <button
-        onClick={() => signOut({ callbackUrl: '/' })}
-        className="px-6 py-2 mt-4 text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors duration-200"
-      >
-        Sign out
-      </button>
+
     </div>
   );
 };
