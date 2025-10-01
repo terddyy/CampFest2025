@@ -3,6 +3,8 @@ import { supabase } from "@/lib/supabaseClient";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 
+export const dynamic = 'force-dynamic';
+
 export async function PATCH(
   req: NextRequest,
   { params }: { params: { orderId: string } }
@@ -21,6 +23,7 @@ export async function PATCH(
       return NextResponse.json({ error: "Invalid payload. 'is_paid' must be a boolean." }, { status: 400 });
     }
 
+    // Ensure orderId is correctly extracted from params
     const { data } = await supabase
       .from('orders')
       .update({ is_paid: is_paid })

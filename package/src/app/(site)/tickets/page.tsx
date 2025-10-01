@@ -314,6 +314,7 @@ export default function TicketsPage() {
               onChange={(e) => setTentCount(e.target.value)}
             >
               <option value="" className="bg-zinc-800 text-gray-400" disabled hidden>Select Tent Count</option>
+              <option value="0" className="bg-zinc-800 text-white">0</option>
               <option value="1" className="bg-zinc-800 text-white">1</option>
               <option value="2" className="bg-zinc-800 text-white">2</option>
               <option value="3" className="bg-zinc-800 text-white">3</option>

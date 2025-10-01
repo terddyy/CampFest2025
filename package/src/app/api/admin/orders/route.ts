@@ -28,6 +28,7 @@ export async function GET() {
         drivetrain,
         setup1,
         setup2,
+        tent_count,
         attendees ( 
           id,
           first_name,
