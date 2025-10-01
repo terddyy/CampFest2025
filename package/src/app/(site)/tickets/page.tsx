@@ -20,7 +20,7 @@ type TicketConfig = {
 }
 
 const TICKETS: TicketConfig[] = [
-  { id: 'earlyPass', name: 'Early Pass', description: 'Early Pass to Campfest 2025', price: 600, note: 'Kids below 5 years old are FREE (no need to register)\nDate: November 7, 2025 (Friday)' },
+  { id: 'earlyPass', name: 'Early Pass to Campfest 2025', description: 'Early Pass to Campfest 2025', price: 600, note: 'Kids below 5 years old are FREE (no need to register)<br />Date: November 7, 2025 (Friday)' },
   { id: 'adult', name: 'Adult', description: '13 years old and above', price: 1200, note: 'Age: 13+' },
   { id: 'child', name: 'Child', description: '5-12 years old', price: 600, note: 'Age: 5-12' },
   { id: 'infant', name: 'Infant', description: 'Below 5 years old: FREE', price: 0, note: 'kids below 5 years old: FREE (no need to register)' },
@@ -215,7 +215,7 @@ export default function TicketsPage() {
                   <div>
                     <p className='text-base font-semibold text-white'>{t.name}</p>
                     <p className='text-sm text-gray-400'>{t.description}</p>
-                    <span className='inline-block text-xs bg-orange-900 text-orange-300 px-2 py-0.5 rounded-full mt-2'>{t.note}</span>
+                    <span className='inline-block text-xs bg-orange-900 text-orange-300 px-2 py-0.5 rounded-full mt-2' dangerouslySetInnerHTML={{ __html: t.note }}></span>
                   </div>
                   <p className='text-2xl font-bold text-teal-400'>{t.price === 0 ? 'FREE' : formatCurrency(t.price)}</p>
                 </div>
