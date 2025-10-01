@@ -139,8 +139,8 @@ export async function GET() {
   try {
     const { data: orders, error } = await supabase
       .from('orders')
-      .select('*')
-      .eq('is_verified', true);
+      .select('*, attendees(*)')
+      .eq('is_paid', true);
 
     if (error) {
       console.error("Error fetching verified orders:", error);

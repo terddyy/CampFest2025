@@ -15,15 +15,15 @@ export async function PATCH(
     }
 
     const { orderId } = context.params;
-    const { isPaid } = await req.json();
+    const { is_paid } = await req.json();
 
-    if (typeof isPaid !== 'boolean') {
-      return NextResponse.json({ error: "Invalid payload. 'isPaid' must be a boolean." }, { status: 400 });
+    if (typeof is_paid !== 'boolean') {
+      return NextResponse.json({ error: "Invalid payload. 'is_paid' must be a boolean." }, { status: 400 });
     }
 
     const { data } = await supabase
       .from('orders')
-      .update({ is_paid: isPaid })
+      .update({ is_paid: is_paid })
       .eq('id', orderId)
       .select();
 

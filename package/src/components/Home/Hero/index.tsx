@@ -7,11 +7,33 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from "embla-carousel-autoplay"
 import { Icon } from '@iconify/react'
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 const Hero: React.FC = () => {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
+
+  const [totalAttendees, setTotalAttendees] = useState<number>(0);
+  const [totalRigs, setTotalRigs] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchMetrics = async () => {
+      try {
+        const response = await fetch('/api/admin/metrics');
+        const data = await response.json();
+        if (response.ok) {
+          setTotalAttendees(data.totalAttendees);
+          setTotalRigs(data.totalRigs);
+        } else {
+          console.error("Failed to fetch metrics:", data.error);
+        }
+      } catch (error) {
+        console.error("Error fetching metrics:", error);
+      }
+    };
+    fetchMetrics();
+  }, []);
 
   return (
     <section 
@@ -30,7 +52,7 @@ const Hero: React.FC = () => {
             <div className='text-white text-center lg:text-start z-10 order-2 lg:order-1'>
               <div className="flex items-center justify-center lg:justify-start gap-2 -mt-24">
                 <Icon icon="solar:user-bold" width={24} height={24} className="text-white" />
-                <p className="text-xl font-semibold text-white">200 attending</p>
+                <p className="text-xl font-semibold text-white">{totalAttendees} attending</p>
                 <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
@@ -38,7 +60,7 @@ const Hero: React.FC = () => {
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-2">
                 <Icon icon="mdi:car" width={24} height={24} className="text-white" />
-                <p className="text-xl font-semibold text-white">100 rigs</p>
+                <p className="text-xl font-semibold text-white">{totalRigs} rigs</p>
               </div>
               <h1 className='text-inherit text-4xl sm:text-6xl md:text-7xl font-semibold -tracking-wider mt-4 mb-6 leading-tight'>
                 <Image

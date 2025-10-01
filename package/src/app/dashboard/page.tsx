@@ -4,6 +4,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
+import Breadcrumb from '@/components/Breadcrumb';
 
 interface User {
   id: string;
@@ -25,8 +26,7 @@ interface Order {
   drivetrain?: string;
   setup1?: string;
   setup2?: string;
-  is_paid?: boolean; // New column for payment status
-  is_verified?: boolean; // Add is_verified to Order interface
+  is_paid: boolean; // Changed to required boolean for clarity
   tent_count: string | null; // Add tent_count to Order interface
   attendees: {
     id: string;
@@ -47,8 +47,6 @@ const DashboardPage = () => {
   
   const [orders, setOrders] = useState<Order[]>([]);
   const [ordersError, setOrdersError] = useState<string | null>(null);
-  const [verifiedOrders, setVerifiedOrders] = useState<Order[]>([]); // New state for verified orders
-  const [verifiedOrdersError, setVerifiedOrdersError] = useState<string | null>(null); // New state for verified orders error
   const [totalAttendees, setTotalAttendees] = useState<number>(0);
   const [totalRigs, setTotalRigs] = useState<number>(0);
   const [newAttendeesInput, setNewAttendeesInput] = useState<string>('');
@@ -69,23 +67,6 @@ const DashboardPage = () => {
     } catch (err) {
       console.error('Failed to fetch orders:', err);
       setOrdersError('An unexpected error occurred while fetching orders.');
-    }
-  };
-
-  const fetchVerifiedOrders = async () => { // New function to fetch verified orders
-    try {
-      const response = await fetch('/api/orders'); // Call the new GET API for verified orders
-      const data = await response.json();
-      console.log('API response for verified orders:', data);
-
-      if (!response.ok) {
-        setVerifiedOrdersError(data.error || 'Failed to fetch verified orders.');
-        return;
-      }
-      setVerifiedOrders(data);
-    } catch (err) {
-      console.error('Failed to fetch verified orders:', err);
-      setVerifiedOrdersError('An unexpected error occurred while fetching verified orders.');
     }
   };
 
@@ -134,21 +115,24 @@ const DashboardPage = () => {
     }
   };
 
-  const handleVerifyPayment = async (orderId: string) => {
-    if (!window.confirm('Are you sure you want to mark this order as paid?')) {
+  const handleTogglePaymentStatus = async (orderId: string, currentStatus: boolean) => {
+    const newStatus = !currentStatus;
+    const confirmMessage = newStatus
+      ? 'Are you sure you want to mark this order as paid?'
+      : 'Are you sure you want to mark this order as unpaid?';
+
+    if (!window.confirm(confirmMessage)) {
       return;
     }
 
     try {
-      const response = await fetch(`/api/admin/orders/${orderId}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ isPaid: true }),
-        }
-      );
+      const response = await fetch(`/api/admin/orders/${orderId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ is_paid: newStatus }),
+      });
 
       const data = await response.json();
 
@@ -157,46 +141,12 @@ const DashboardPage = () => {
         return;
       }
 
-      alert('Order marked as paid successfully!');
+      alert(`Order marked as ${newStatus ? 'paid' : 'unpaid'} successfully!`);
       fetchOrders(); // Refresh the orders list
-      fetchVerifiedOrders(); // Also refresh verified orders
       fetchMetrics(); // Refresh metrics after order update
     } catch (err) {
-      console.error('Error verifying payment:', err);
-      alert('An unexpected error occurred while verifying payment.');
-    }
-  };
-
-  const handleUnverifyPayment = async (orderId: string) => {
-    if (!window.confirm('Are you sure you want to mark this order as unpaid?')) {
-      return;
-    }
-
-    try {
-      const response = await fetch(`/api/admin/orders/${orderId}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ isPaid: false }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        alert(data.error || 'Failed to update payment status.');
-        return;
-      }
-
-      alert('Order marked as unpaid successfully!');
-      fetchOrders(); // Refresh the orders list
-      fetchVerifiedOrders(); // Also refresh verified orders
-      fetchMetrics(); // Refresh metrics after order update
-    } catch (err) {
-      console.error('Error unverifying payment:', err);
-      alert('An unexpected error occurred while unverifying payment.');
+      console.error('Error updating payment status:', err);
+      alert('An unexpected error occurred while updating payment status.');
     }
   };
 
@@ -220,7 +170,6 @@ const DashboardPage = () => {
       // Only fetch users if authenticated
       
       fetchOrders(); // Fetch orders as well
-      fetchVerifiedOrders(); // Fetch verified orders on component mount
       fetchMetrics(); // Fetch metrics on component mount
     }
   }, [status, session, router]);
@@ -235,6 +184,7 @@ const DashboardPage = () => {
 
   return (
     <div className="container max-w-7xl mx-auto px-5 pt-28 pb-20 text-white">
+      <Breadcrumb links={[{ href: '/', text: 'Home' }, { href: '/dashboard', text: 'Dashboard' }]} />
       <h1 className="text-3xl font-semibold mb-6">Admin Dashboard</h1>
 
       <button
@@ -287,8 +237,8 @@ const DashboardPage = () => {
       )}
 
       <div className="mb-8">
-        <Link href="/dashboard/verified-orders" className="text-teal-400 hover:underline">
-          View Verified Orders
+        <Link href="/dashboard/paid-orders" className="text-teal-400 hover:underline">
+          View Paid Orders
         </Link>
       </div>
 
@@ -344,16 +294,10 @@ const DashboardPage = () => {
                     </td>
                     <td className="py-2 px-4">
                       <button
-                        onClick={() => handleVerifyPayment(order.id)}
-                        className="bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 mr-2"
+                        onClick={() => handleTogglePaymentStatus(order.id, order.is_paid)}
+                        className={`${order.is_paid ? 'bg-yellow-600 hover:bg-yellow-700' : 'bg-green-600 hover:bg-green-700'} text-white px-3 py-1 rounded-md mr-2 transition-colors duration-200`}
                       >
-                        Verify
-                      </button>
-                      <button
-                        onClick={() => handleUnverifyPayment(order.id)}
-                        className="bg-yellow-600 text-white px-3 py-1 rounded-md hover:bg-yellow-700"
-                      >
-                        Unverify
+                        {order.is_paid ? 'Unverify' : 'Verify'}
                       </button>
                     </td>
                   </tr>
@@ -391,16 +335,10 @@ const DashboardPage = () => {
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                   <button
-                    onClick={() => handleVerifyPayment(order.id)}
-                    className="bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 flex-grow"
+                    onClick={() => handleTogglePaymentStatus(order.id, order.is_paid)}
+                    className={`${order.is_paid ? 'bg-yellow-600 hover:bg-yellow-700' : 'bg-green-600 hover:bg-green-700'} text-white px-3 py-1 rounded-md flex-grow transition-colors duration-200`}
                   >
-                    Verify
-                  </button>
-                  <button
-                    onClick={() => handleUnverifyPayment(order.id)}
-                    className="bg-yellow-600 text-white px-3 py-1 rounded-md hover:bg-yellow-700 flex-grow"
-                  >
-                    Unverify
+                    {order.is_paid ? 'Unverify' : 'Verify'}
                   </button>
                 </div>
               </div>

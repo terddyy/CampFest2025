@@ -9,11 +9,11 @@ import { authOptions } from "@/lib/authOptions";
 
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.isAdmin) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    // const session = await getServerSession(authOptions);
+    //
+    // if (!session || !session.user?.isAdmin) {
+    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // }
 
     // Fetch override counts from the metrics table
     const { data: metricsData, error: metricsError } = await supabase

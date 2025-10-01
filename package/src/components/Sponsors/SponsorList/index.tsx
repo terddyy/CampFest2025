@@ -12,10 +12,10 @@ const SponsorList = () => {
         <div className='text-center'>
          
           <h2 className='lg:text-52 text-40 md:text-52 mt-4 mb-2 lg:max-w-full font-medium leading-[1.2] text-white'>
-            Meet Our Amazing Sponsors
+             CampFest 2025 Sponsors & Partners
           </h2>
           <p className='text-gray-400 text-lg lg:max-w-full leading-[1.3] md:max-w-3/4 mx-auto'>
-            We are proud to partner with these incredible brands and organizations for CampFest 2025.
+            We’re grateful for the support of these incredible brands that help make CampFest possible.
           </p>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-14'>
