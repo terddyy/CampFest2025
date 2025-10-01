@@ -101,7 +101,7 @@ const Hero: React.FC = () => {
                 onMouseLeave={plugin.current.reset}
               >
                 <CarouselContent>
-                    <CarouselItem className="h-[250px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage1.jpg'}
                             alt='heroImg'
@@ -109,10 +109,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={true}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage2.jpg'}
                             alt='heroImg'
@@ -120,10 +120,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage3.jpg'}
                             alt='heroImg'
@@ -131,10 +131,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage4.jpg'}
                             alt='heroImg'
@@ -142,10 +142,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage5.jpg'}
                             alt='heroImg'
@@ -153,10 +153,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage6.jpg'}
                             alt='heroImg'
@@ -164,10 +164,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage7.jpg'}
                             alt='heroImg'
@@ -175,10 +175,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage9.jpg'}
                             alt='heroImg'
@@ -186,10 +186,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage8.jpg'}
                             alt='heroImg'
@@ -197,10 +197,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage10.jpg'}
                             alt='heroImg'
@@ -208,10 +208,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage11(1).jpg'}
                             alt='heroImg'
@@ -219,10 +219,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage12.jpg'}
                             alt='heroImg'
@@ -230,10 +230,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage13.jpg'}
                             alt='heroImg'
@@ -241,10 +241,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage14.jpg'}
                             alt='heroImg'
@@ -252,10 +252,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage15.jpg'}
                             alt='heroImg'
@@ -263,10 +263,10 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover object-[50%_10%] rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
-                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[500px]">
+                    <CarouselItem className="h-[300px] sm:h-[400px] md:h-[400px] overflow-hidden">
                         <Image
                             src={'/images/hero_image/new_hero_img/Homepage16.jpg'}
                             alt='heroImg'
@@ -274,7 +274,7 @@ const Hero: React.FC = () => {
                             height={1120}
                             priority={false}
                             unoptimized={true}
-                            className="w-full h-auto object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
                         />
                     </CarouselItem>
                 </CarouselContent>
