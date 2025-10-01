@@ -14,7 +14,7 @@ export async function PATCH(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { orderId } = params;
+    const { orderId } = params.params;
     const { is_paid } = await req.json();
 
     if (typeof is_paid !== 'boolean') {

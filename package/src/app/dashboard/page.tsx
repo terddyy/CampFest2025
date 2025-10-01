@@ -6,14 +6,7 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import Breadcrumb from '@/components/Breadcrumb';
 
-interface User {
-  id: string;
-  email: string;
-  isAdmin?: boolean; // Add isAdmin to User interface
-  created_at: string;
-}
-
-interface Order {
+export interface Order {
   id: string;
   purchaser_email: string;
   purchaser_phone: string;
@@ -32,12 +25,6 @@ interface Order {
     first_name: string;
     last_name: string;
   }[];
-}
-
-interface Attendee {
-  id: string;
-  first_name: string;
-  last_name: string;
 }
 
 const DashboardPage = () => {
