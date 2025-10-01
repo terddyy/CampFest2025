@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabaseClient";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export async function PATCH(
   req: Request,
-  context: { params: { orderId: string } }
+  { params }: any
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -16,7 +16,7 @@ export async function PATCH(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { orderId } = context.params;
+    const { orderId } = params;
     const { is_paid } = await req.json();
 
     if (typeof is_paid !== 'boolean') {
