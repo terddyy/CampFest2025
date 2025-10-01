@@ -6,8 +6,8 @@ import { authOptions } from "@/lib/authOptions";
 export const dynamic = 'force-dynamic';
 
 export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { orderId: string } }
+  req: Request,
+  context: { params: { orderId: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -16,7 +16,7 @@ export async function PATCH(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { orderId } = params.params;
+    const { orderId } = context.params;
     const { is_paid } = await req.json();
 
     if (typeof is_paid !== 'boolean') {
@@ -30,7 +30,7 @@ export async function PATCH(
       .eq('id', orderId)
       .select();
 
-    if (!data) {
+    if (!data || data.length === 0) {
       return NextResponse.json({ error: "Order not found." }, { status: 404 });
     }
 
