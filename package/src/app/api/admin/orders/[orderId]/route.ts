@@ -5,7 +5,7 @@ import { authOptions } from "@/lib/authOptions";
 
 export async function PATCH(
   req: NextRequest,
-  context: { params: { orderId: string } }
+  { params }: { params: { orderId: string } }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -14,7 +14,7 @@ export async function PATCH(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { orderId } = context.params;
+    const { orderId } = params;
     const { is_paid } = await req.json();
 
     if (typeof is_paid !== 'boolean') {
