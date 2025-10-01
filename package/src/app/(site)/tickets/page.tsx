@@ -36,8 +36,8 @@ export default function TicketsPage() {
   const [email, setEmail] = React.useState('')
   const [phone, setPhone] = React.useState('') // Single phone state
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
-  const [message, setMessage] = React.useState('')
   const [errors, setErrors] = React.useState<string | null>(null)
+  const [message, setMessage] = React.useState<string | null>(null)
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [confirmationOrderId, setConfirmationOrderId] = useState<string | null>(null);
   const [plateNumber, setPlateNumber] = useState('');
@@ -78,7 +78,6 @@ export default function TicketsPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setErrors(null);
-    setMessage('');
     const selectedCount = Object.values(quantities).reduce((a, b) => a + b, 0);
     if (selectedCount === 0) {
       setErrors('Please select at least one ticket.');
@@ -129,7 +128,6 @@ export default function TicketsPage() {
     formData.append('email', email);
     formData.append('phone', phone);
     formData.append('total', total.toString());
-    formData.append('message', message);
     formData.append('attendees', JSON.stringify(attendees));
     formData.append('plateNumber', plateNumber);
     formData.append('vehicleType', vehicleType);
@@ -161,7 +159,6 @@ export default function TicketsPage() {
       setEmail('');
       setPhone('');
       setSelectedFile(null);
-      setMessage(''); // Clear message after successful submission
       setPlateNumber('');
       setVehicleType('');
       setDrivetrain('');
@@ -356,9 +353,6 @@ export default function TicketsPage() {
               onChange={(e) => setPhone(e.target.value)} 
             />
           </div>
-          <div className='mt-4'>
-            <textarea className='w-full min-h-28 rounded-md p-3 border border-white/10 bg-zinc-800/50 text-white placeholder-gray-500 focus:border-teal-400 focus:ring-teal-400' placeholder='Any special requests or messages...' value={message} onChange={(e) => setMessage(e.target.value)} />
-          </div>
 
           <div className='mt-6 p-6 bg-zinc-900/60 rounded-2xl border border-white/10 text-center'>
             <p className='text-white text-xl font-semibold mb-3 flex items-center'>
@@ -374,7 +368,7 @@ export default function TicketsPage() {
                 className='w-full h-full object-contain' 
               />
             </div>
-            <p className='text-gray-400 text-sm mt-3'>Upload your payment receipt after scanning.</p>
+            <p className='text-gray-400 text-sm mt-3'>Note: Kindly fill out all the fields, make your payment, and upload a screenshot of your receipt before submitting</p>
           </div>
 
           <div className='mt-6'>

@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import React from 'react'
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
+import ThemeToggle from '@/components/ThemeToggle';
 
 const Header: React.FC = () => {
 
@@ -42,6 +43,7 @@ const Header: React.FC = () => {
                   0931-214-6746
                 </a>
               </div>
+              <ThemeToggle />
               <Link href="/tickets" className="hidden md:block">
                 <Button size="sm" className={`rounded-full px-4 bg-black text-white`}>Buy tickets</Button>
               </Link>
@@ -73,6 +75,7 @@ const Header: React.FC = () => {
             <Link href="/login" onClick={toggleMobileMenu}>
               <Button size="lg" className={`rounded-full px-8 bg-blue-500 text-white`}>Sign In</Button>
             </Link>
+            <ThemeToggle />
             {session?.user && (
               <Button
                 size="lg"

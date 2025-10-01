@@ -1,9 +1,9 @@
-export type Sponsor = {
+export interface Sponsor {
   name: string
   slug: string
   logo: string
   description: string
-  website: string
+  website?: string
   facebook?: string
   instagram?: string
   twitter?: string
@@ -13,6 +13,7 @@ export type Sponsor = {
   shopee?: string
   email?: string
   contactNumber?: string
+  isMajorSponsor?: boolean
 }
 
 

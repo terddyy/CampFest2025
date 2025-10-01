@@ -20,7 +20,6 @@ export async function GET() {
         purchaser_phone,
         total_amount,
         payment_receipt_url,
-        special_requests,
         created_at,
         is_paid,
         last_updated,

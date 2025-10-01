@@ -6,12 +6,20 @@ import Link from 'next/link'
 interface SponsorCardProps {
   sponsor: Sponsor;
   className?: string; // Add this line
+  isMajorSponsor?: boolean; // Add this line
 }
 
-const SponsorCard: React.FC<SponsorCardProps> = ({ sponsor, className }) => {
+const SponsorCard: React.FC<SponsorCardProps> = ({ sponsor, className, isMajorSponsor }) => {
+  const cardClasses = `min-h-[300px] ${className || ''}`;
+
   return (
-    <div className={`min-h-[300px] ${className || ''}`}>
+    <div className={cardClasses}>
       <div className='p-6 group border border-white rounded-xl bg-zinc-900/60 hover:bg-zinc-800/80 transition-all duration-300 h-full flex flex-col'>
+        {isMajorSponsor && (
+          <div className='text-center mb-2'>
+            <span className='inline-block text-white text-xs font-bold text-shadow-neon-pink'>Major Sponsor</span>
+          </div>
+        )}
         <Link href={`/sponsors/${sponsor.slug}`}>
           <div className='flex justify-center items-center h-40'>
             <Image src={sponsor.logo} alt={sponsor.name} width={150} height={150} className='h-auto w-auto max-h-full max-w-full' />

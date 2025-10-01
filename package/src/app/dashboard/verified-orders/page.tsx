@@ -10,7 +10,6 @@ interface Order {
   purchaser_phone: string;
   total_amount: number;
   payment_receipt_url: string | null;
-  special_requests: string | null;
   is_paid: boolean;
   created_at: string;
   plate_number: string | null;
@@ -82,7 +81,6 @@ const VerifiedOrdersPage = () => {
                 <th className="py-2 px-4 border-b border-white/10">Email</th>
                 <th className="py-2 px-4 border-b border-white/10">Phone</th>
                 <th className="py-2 px-4 border-b border-white/10">Amount</th>
-                <th className="py-2 px-4 border-b border-white/10">Requests</th>
                 <th className="py-2 px-4 border-b border-white/10">Plate Number</th>
                 <th className="py-2 px-4 border-b border-white/10">Vehicle Type</th>
                 <th className="py-2 px-4 border-b border-white/10">Drivetrain</th>
@@ -99,7 +97,6 @@ const VerifiedOrdersPage = () => {
                   <td className="py-2 px-4">{order.purchaser_email}</td>
                   <td className="py-2 px-4">{order.purchaser_phone}</td>
                   <td className="py-2 px-4">₱{order.total_amount.toFixed(2)}</td>
-                  <td className="py-2 px-4">{order.special_requests || 'N/A'}</td>
                   <td className="py-2 px-4">{order.plate_number || 'N/A'}</td>
                   <td className="py-2 px-4">{order.vehicle_type || 'N/A'}</td>
                   <td className="py-2 px-4">{order.drivetrain || 'N/A'}</td>

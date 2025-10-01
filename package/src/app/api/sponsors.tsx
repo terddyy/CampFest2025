@@ -13,6 +13,7 @@ export const sponsors: Sponsor[] = [
     lazada: 'https://bit.ly/41v9r00',
     shopee: 'https://bit.ly/3HVHKa3',
     email: 'sale-asia@bluettipower.com',
+    isMajorSponsor: true,
   },
   {
     name: 'CLAP MOTO Project',

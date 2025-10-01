@@ -3,7 +3,7 @@ import { Bricolage_Grotesque } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Layout/Header'
 import Footer from '@/components/Layout/Footer'
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import NextTopLoader from 'nextjs-toploader';
 import { Analytics } from "@vercel/analytics/next"
 import { usePathname } from 'next/navigation'
@@ -30,7 +30,7 @@ export default function RootLayout({
         <NextTopLoader color="#07be8a" />
         <SessionProvider>
           <div className="relative">
-            <ThemeProvider
+            <NextThemesProvider
               attribute='class'
               enableSystem={true}
               defaultTheme='dark'>
@@ -39,7 +39,7 @@ export default function RootLayout({
                 {children}
               </div>
               <Footer />
-            </ThemeProvider>
+            </NextThemesProvider>
             <a href="/tickets" className="fixed top-4 right-4 z-50 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg md:hidden">Buy Tickets</a>
           </div>
         <Analytics />

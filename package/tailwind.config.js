@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -13,6 +14,7 @@ module.exports = {
         lightskyblue: 'var(--color-lightskyblue)',
         dark: 'var(--color-dark)',
         destructive: '#ef4444', // A red color for errors
+        majorSponsorPink: '#FF007F',
       },
       fontSize: {
         'xm': 'var(--text-xm)',
@@ -41,7 +43,17 @@ module.exports = {
       animation: {
         'slide': 'var(--animate-slide)',
       },
+      textShadow: {
+        'neon-pink': '0 0 5px #FF007F, 0 0 10px #FF007F, 0 0 15px #FF007F, 0 0 20px #FF007F',
+      },
     },
   },
-  plugins: [],
+  plugins: [function ({ addUtilities, theme }) {
+    const newUtilities = {
+      '.text-shadow-neon-pink': {
+        textShadow: theme('textShadow.neon-pink'),
+      },
+    }
+    addUtilities(newUtilities, ['responsive', 'hover'])
+  }],
 }

@@ -20,7 +20,7 @@ const SponsorList = () => {
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-14'>
           {sponsors.map((sponsor, index) => (
-            <SponsorCard key={index} sponsor={sponsor} />
+            <SponsorCard key={index} sponsor={sponsor} isMajorSponsor={sponsor.isMajorSponsor} />
           ))}
           {placeholders.map((_, index) => (
             <div key={`placeholder-${index}`}>

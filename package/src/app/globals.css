@@ -62,12 +62,23 @@
   animation: var(--animate-slide);
 }
 
+html {
+  --background-color: black;
+  --text-color: #f8f8f8;
+}
+
+.dark {
+  --background-color: #1a1a1a;
+  --text-color: #e0e0e0;
+}
+
 html, body {
   overflow-x: hidden;
 }
 
 html {
-  background-color: black; /* Ensure html background is black */
+  background-color: var(--background-color); /* Ensure html background is black */
+  color: var(--text-color);
   scroll-behavior: smooth;
 }
 

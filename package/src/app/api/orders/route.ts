@@ -15,7 +15,6 @@ export async function POST(req: Request) {
     const purchaserEmail = formData.get('email') as string;
     const purchaserPhone = formData.get('phone') as string;
     const totalAmount = parseFloat(formData.get('total') as string);
-    const specialRequests = formData.get('message') as string | null;
     const attendeesString = formData.get('attendees') as string;
     const paymentReceipt = formData.get('paymentReceipt') as File | null;
     const plateNumber = formData.get('plateNumber') as string | null;
@@ -77,7 +76,6 @@ export async function POST(req: Request) {
         purchaser_phone: purchaserPhone,
         total_amount: totalAmount,
         payment_receipt_url: paymentReceiptUrl,
-        special_requests: specialRequests,
         plate_number: plateNumber,
         vehicle_type: vehicleType,
         drivetrain: drivetrain,

@@ -18,7 +18,6 @@ interface Order {
   purchaser_email: string;
   purchaser_phone: string;
   total_amount: number;
-  special_requests?: string;
   payment_receipt_url?: string;
   created_at: string;
   plate_number?: string;
@@ -255,7 +254,6 @@ const DashboardPage = () => {
                   <th className="py-2 px-4 border-b border-white/10">Email</th>
                   <th className="py-2 px-4 border-b border-white/10">Phone</th>
                   <th className="py-2 px-4 border-b border-white/10">Amount</th>
-                  <th className="py-2 px-4 border-b border-white/10">Special Requests</th>
                   <th className="py-2 px-4 border-b border-white/10">Plate Number</th>
                   <th className="py-2 px-4 border-b border-white/10">Vehicle Type</th>
                   <th className="py-2 px-4 border-b border-white/10">Drivetrain</th>
@@ -273,7 +271,6 @@ const DashboardPage = () => {
                     <td className="py-2 px-4">{order.purchaser_email}</td>
                     <td className="py-2 px-4">{order.purchaser_phone}</td>
                     <td className="py-2 px-4">₱{order.total_amount.toFixed(2)}</td>
-                    <td className="py-2 px-4">{order.special_requests || 'N/A'}</td>
                     <td className="py-2 px-4">{order.plate_number || 'N/A'}</td>
                     <td className="py-2 px-4">{order.vehicle_type || 'N/A'}</td>
                     <td className="py-2 px-4">{order.drivetrain || 'N/A'}</td>
@@ -314,7 +311,6 @@ const DashboardPage = () => {
                 <p className="text-sm text-gray-400 mt-1"><strong>Email:</strong> {order.purchaser_email}</p>
                 <p className="text-sm text-gray-400 mt-1"><strong>Phone:</strong> {order.purchaser_phone}</p>
                 <p className="text-sm text-gray-400 mt-1"><strong>Amount:</strong> ₱{order.total_amount.toFixed(2)}</p>
-                <p className="text-sm text-gray-400 mt-1"><strong>Requests:</strong> {order.special_requests || 'N/A'}</p>
                 <p className="text-sm text-gray-400 mt-1"><strong>Plate:</strong> {order.plate_number || 'N/A'}</p>
                 <p className="text-sm text-gray-400 mt-1"><strong>Vehicle:</strong> {order.vehicle_type || 'N/A'}</p>
                 <p className="text-sm text-gray-400 mt-1"><strong>Drivetrain:</strong> {order.drivetrain || 'N/A'}</p>
