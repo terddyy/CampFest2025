@@ -23,6 +23,7 @@ export async function POST(req: Request) {
     const drivetrain = formData.get('drivetrain') as string | null;
     const setup1 = formData.get('setup1') as string | null;
     const setup2 = formData.get('setup2') as string | null;
+    const tentCount = formData.get('tentCount') as string | null;
 
     console.log("Extracted form fields.");
 
@@ -82,6 +83,7 @@ export async function POST(req: Request) {
         drivetrain: drivetrain,
         setup1: setup1,
         setup2: setup2,
+        tent_count: tentCount,
       })
       .select('id')
       .single();

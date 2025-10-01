@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import Image from 'next/image'
 
-type TicketType = 'adult' | 'child' | 'infant'
+type TicketType = 'adult' | 'child' | 'infant' | 'earlyPass'
 
 interface Attendee {
   firstName: string;
@@ -20,9 +20,10 @@ type TicketConfig = {
 }
 
 const TICKETS: TicketConfig[] = [
+  { id: 'earlyPass', name: 'Early Pass', description: 'Early access to CampFest 2025 Kids below 5 years old: FREE (no need to register)', price: 600, note: 'Date: Nov 7, 2025' },
   { id: 'adult', name: 'Adult', description: '13 years old and above', price: 1200, note: 'Age: 13+' },
   { id: 'child', name: 'Child', description: '5-12 years old', price: 600, note: 'Age: 5-12' },
-  { id: 'infant', name: 'Infant', description: 'Below 5 years old', price: 0, note: 'Age: 0-4' },
+  { id: 'infant', name: 'Infant', description: 'Below 5 years old: FREE', price: 0, note: 'kids below 5 years old: FREE (no need to register)' },
 ]
 
 function formatCurrency(amount: number) {
@@ -30,7 +31,7 @@ function formatCurrency(amount: number) {
 }
 
 export default function TicketsPage() {
-  const [quantities, setQuantities] = React.useState<Record<TicketType, number>>({ adult: 0, child: 0, infant: 0 })
+  const [quantities, setQuantities] = React.useState<Record<TicketType, number>>({ earlyPass: 0, adult: 0, child: 0, infant: 0 })
   const [attendees, setAttendees] = React.useState<Attendee[]>([])
   const [email, setEmail] = React.useState('')
   const [phone, setPhone] = React.useState('') // Single phone state
@@ -44,6 +45,7 @@ export default function TicketsPage() {
   const [drivetrain, setDrivetrain] = useState('');
   const [setup1, setSetup1] = useState('');
   const [setup2, setSetup2] = useState('');
+  const [tentCount, setTentCount] = useState('');
 
   useEffect(() => {
     const fetchDisplayMetrics = async () => {
@@ -62,6 +64,7 @@ export default function TicketsPage() {
 
   const total = React.useMemo(() => {
     return (
+      quantities.earlyPass * 600 +
       quantities.adult * 1200 +
       quantities.child * 600 +
       quantities.infant * 0
@@ -117,6 +120,10 @@ export default function TicketsPage() {
       setErrors('Please select your second setup option.');
       return;
     }
+    if (!tentCount) {
+      setErrors('Please provide the number of tents.');
+      return;
+    }
 
     const formData = new FormData();
     formData.append('email', email);
@@ -129,6 +136,7 @@ export default function TicketsPage() {
     formData.append('drivetrain', drivetrain);
     formData.append('setup1', setup1);
     formData.append('setup2', setup2);
+    formData.append('tentCount', tentCount);
     if (selectedFile) {
       formData.append('paymentReceipt', selectedFile);
     }
@@ -148,7 +156,7 @@ export default function TicketsPage() {
 
       setMessage(data.message || 'Order placed successfully!');
       // Optionally, clear the form or redirect
-      setQuantities({ adult: 0, child: 0, infant: 0 });
+      setQuantities({ earlyPass: 0, adult: 0, child: 0, infant: 0 });
       setAttendees([]);
       setEmail('');
       setPhone('');
@@ -159,6 +167,7 @@ export default function TicketsPage() {
       setDrivetrain('');
       setSetup1('');
       setSetup2('');
+      setTentCount('');
       setConfirmationOrderId(data.orderId);
       setShowConfirmationModal(true);
 
@@ -316,6 +325,21 @@ export default function TicketsPage() {
           </div>
 
           <div className='mt-4'>
+            <select
+              className='w-full h-11 rounded-md px-3 border border-white/10 bg-zinc-800/50 text-white focus:border-teal-400 focus:ring-teal-400'
+              value={tentCount}
+              onChange={(e) => setTentCount(e.target.value)}
+            >
+              <option value="" className="bg-zinc-800 text-gray-400" disabled hidden>Select Tent Count</option>
+              <option value="1" className="bg-zinc-800 text-white">1</option>
+              <option value="2" className="bg-zinc-800 text-white">2</option>
+              <option value="3" className="bg-zinc-800 text-white">3</option>
+              <option value="4" className="bg-zinc-800 text-white">4</option>
+              <option value="5" className="bg-zinc-800 text-white">5</option>
+            </select>
+          </div>
+
+          <div className='mt-4'>
             <input
               type='email'
               className='w-full h-11 rounded-md px-3 border border-white/10 bg-zinc-800/50 text-white placeholder-gray-500 focus:border-teal-400 focus:ring-teal-400'
@@ -338,12 +362,12 @@ export default function TicketsPage() {
 
           <div className='mt-6 p-6 bg-zinc-900/60 rounded-2xl border border-white/10 text-center'>
             <p className='text-white text-xl font-semibold mb-3 flex items-center'>
-              Scan to Pay via GCash <Image src="/images/gcash_logo.png" alt="GCash Logo" width={24} height={24} className="ml-2 h-6 w-auto" />
+              Scan to Pay via GCash 
             </p>
-            <div className='w-40 h-40 bg-black mx-auto flex items-center justify-center rounded-lg overflow-hidden border border-white/20'>
+            <div className='w-40 h-40 bg-white mx-auto flex items-center justify-center rounded-lg overflow-hidden border border-white/20'>
               {/* Placeholder for GCash QR Code - Replace src with your actual GCash QR image */}
               <Image 
-                src={'/images/terdimage/gcash_qr_placeholder.png'} 
+                src={'/images/terdimage/QR_Code_Example.svg.png'} 
                 alt='GCash Payment QR Code' 
                 width={160} 
                 height={160} 

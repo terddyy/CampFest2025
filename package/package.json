@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npx dotenv -f .env -- next dev --turbopack",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "cross-env NEXTAUTH_URL=%NEXTAUTH_URL% NEXT_PUBLIC_SUPABASE_URL=%NEXT_PUBLIC_SUPABASE_URL% NEXT_PUBLIC_SUPABASE_ANON_KEY=%NEXT_PUBLIC_SUPABASE_ANON_KEY% next lint && echo 'NEXTAUTH_URL:' %NEXTAUTH_URL% && echo 'NEXT_PUBLIC_SUPABASE_URL:' %NEXT_PUBLIC_SUPABASE_URL% && echo 'NEXT_PUBLIC_SUPABASE_ANON_KEY:' %NEXT_PUBLIC_SUPABASE_ANON_KEY%"
@@ -47,7 +47,6 @@
     "@types/react-dom": "^19",
     "@types/react-slick": "^0.23.13",
     "autoprefixer": "^10.4.21",
-    "cross-env": "^10.0.0",
     "dotenv-cli": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
