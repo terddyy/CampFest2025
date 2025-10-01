@@ -78,7 +78,7 @@ export async function PATCH(
       return NextResponse.json({ error: "Invalid payload. 'totalRigs' must be a number or null." }, { status: 400 });
     }
 
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('metrics')
       .upsert({ id: 1, total_attendees: totalAttendees, total_rigs: totalRigs }, { onConflict: 'id' });
 

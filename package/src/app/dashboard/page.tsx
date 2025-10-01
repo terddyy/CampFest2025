@@ -46,8 +46,6 @@ const DashboardPage = () => {
   
   const [orders, setOrders] = useState<Order[]>([]);
   const [ordersError, setOrdersError] = useState<string | null>(null);
-  const [totalAttendees, setTotalAttendees] = useState<number>(0);
-  const [totalRigs, setTotalRigs] = useState<number>(0);
   const [newAttendeesInput, setNewAttendeesInput] = useState<string>('');
   const [newRigsInput, setNewRigsInput] = useState<string>('');
   const [metricsMessage, setMetricsMessage] = useState<string | null>(null);
@@ -74,9 +72,7 @@ const DashboardPage = () => {
       const response = await fetch('/api/admin/metrics');
       const data = await response.json();
       if (response.ok) {
-        setTotalAttendees(data.totalAttendees);
         setNewAttendeesInput(data.totalAttendees.toString());
-        setTotalRigs(data.totalRigs);
         setNewRigsInput(data.totalRigs.toString());
       } else {
         console.error("Failed to fetch metrics:", data.error);
@@ -103,8 +99,6 @@ const DashboardPage = () => {
       const data = await response.json();
       if (response.ok) {
         setMetricsMessage("Metrics updated successfully.");
-        setTotalAttendees(data.totalAttendees);
-        setTotalRigs(data.totalRigs);
       } else {
         setMetricsMessage(data.error || "Failed to update metrics.");
       }

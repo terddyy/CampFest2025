@@ -37,7 +37,6 @@ export default function TicketsPage() {
   const [phone, setPhone] = React.useState('') // Single phone state
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [errors, setErrors] = React.useState<string | null>(null)
-  const [message, setMessage] = React.useState<string | null>(null)
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [confirmationOrderId, setConfirmationOrderId] = useState<string | null>(null);
   const [plateNumber, setPlateNumber] = useState('');
@@ -152,19 +151,6 @@ export default function TicketsPage() {
         return;
       }
 
-      setMessage(data.message || 'Order placed successfully!');
-      // Optionally, clear the form or redirect
-      setQuantities({ earlyPass: 0, adult: 0, child: 0, infant: 0 });
-      setAttendees([]);
-      setEmail('');
-      setPhone('');
-      setSelectedFile(null);
-      setPlateNumber('');
-      setVehicleType('');
-      setDrivetrain('');
-      setSetup1('');
-      setSetup2('');
-      setTentCount('');
       setConfirmationOrderId(data.orderId);
       setShowConfirmationModal(true);
 

@@ -33,8 +33,10 @@ const VerifiedOrdersPage = () => {
   const [paidOrders, setPaidOrders] = useState<Order[]>([]);
   const [paidOrdersError, setPaidOrdersError] = useState<string | null>(null);
 
-  const handleDownloadReceipt = (url: string) => {
-    window.open(url, '_blank');
+  const handleDownloadReceipt = (url: string | null) => {
+    if (url) {
+      window.open(url, '_blank');
+    }
   };
 
   const downloadCSV = () => {
@@ -96,7 +98,7 @@ const VerifiedOrdersPage = () => {
         setPaidOrdersError(data.error || 'Failed to fetch paid orders.');
         return;
       }
-      const sortedData = data.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      const sortedData = (data as Order[]).sort((a: Order, b: Order) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
       setPaidOrders(sortedData);
     } catch (err) {
       console.error('Failed to fetch paid orders:', err);
@@ -174,7 +176,7 @@ const VerifiedOrdersPage = () => {
                   <td className="py-2 px-4">{order.plate_number || 'N/A'}</td>
                   <td className="py-2 px-4">
                     {order.attendees && order.attendees.length > 0 ? (
-                      order.attendees.map((attendee, index) => (
+                      order.attendees.map((attendee) => (
                         <div key={attendee.id}>
                           {attendee.first_name} {attendee.last_name}
                         </div>
@@ -191,7 +193,7 @@ const VerifiedOrdersPage = () => {
                   <td className="py-2 px-4">
                     {order.payment_receipt_url ? (
                       <button
-                        onClick={() => handleDownloadReceipt(order.payment_receipt_url as string)}
+                        onClick={() => handleDownloadReceipt(order.payment_receipt_url)}
                         className="text-teal-400 hover:underline"
                       >
                         View Receipt

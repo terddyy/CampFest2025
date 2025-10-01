@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Image from 'next/image';
 
 interface VerificationEmailProps {
   customerName: string;
@@ -32,7 +33,7 @@ export const VerificationEmail: React.FC<Readonly<VerificationEmailProps>> = ({
       Please present the QR code below at the event entrance for scanning:
     </p>
     <div style={qrCodeContainer}>
-      <img src={qrCodeUrl} alt="QR Code" style={qrCodeImage} />
+      <Image src={qrCodeUrl} alt="QR Code" style={qrCodeImage} width={150} height={150} />
     </div>
     <p style={paragraph}>
       Thank you for joining CampFest 2025!
@@ -62,7 +63,7 @@ const paragraph = {
 };
 
 const qrCodeContainer = {
-  textAlign: 'center' as 'center',
+  textAlign: 'center' as const,
   margin: '20px 0',
 };
 
