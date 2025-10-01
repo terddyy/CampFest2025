@@ -4,8 +4,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 
 // Placeholder for admin-set overrides
-let adminOverrideAttendees: number | null = null;
-let adminOverrideRigs: number | null = null;
+// let adminOverrideAttendees: number | null = null;
+// let adminOverrideRigs: number | null = null;
 
 export async function GET() {
   try {
@@ -15,7 +15,26 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Fetch current counts from the database
+    // Fetch override counts from the metrics table
+    const { data: metricsData, error: metricsError } = await supabase
+      .from('metrics')
+      .select('total_attendees, total_rigs')
+      .single();
+
+    let overriddenAttendees: number | null = null;
+    let overriddenRigs: number | null = null;
+
+    if (metricsError && metricsError.code !== 'PGRST116') { // PGRST116 means no rows found
+      console.error("Error fetching metrics from DB:", metricsError);
+      return NextResponse.json({ error: "Failed to fetch metrics" }, { status: 500 });
+    }
+
+    if (metricsData) {
+      overriddenAttendees = metricsData.total_attendees;
+      overriddenRigs = metricsData.total_rigs;
+    }
+
+    // Fetch current counts from the database if no overrides are set
     const { count: dbAttendees, error: attendeesError } = await supabase
       .from('attendees')
       .select('*', { count: 'exact' });
@@ -30,8 +49,8 @@ export async function GET() {
       return NextResponse.json({ error: "Failed to fetch metrics" }, { status: 500 });
     }
 
-    const totalAttendees = adminOverrideAttendees !== null ? adminOverrideAttendees : dbAttendees || 0;
-    const totalRigs = adminOverrideRigs !== null ? adminOverrideRigs : dbRigs || 0;
+    const totalAttendees = overriddenAttendees !== null ? overriddenAttendees : dbAttendees || 0;
+    const totalRigs = overriddenRigs !== null ? overriddenRigs : dbRigs || 0;
 
     return NextResponse.json({ totalAttendees, totalRigs }, { status: 200 });
   } catch (error) {
@@ -59,10 +78,16 @@ export async function PATCH(
       return NextResponse.json({ error: "Invalid payload. 'totalRigs' must be a number or null." }, { status: 400 });
     }
 
-    adminOverrideAttendees = totalAttendees;
-    adminOverrideRigs = totalRigs;
+    const { data, error } = await supabase
+      .from('metrics')
+      .upsert({ id: 1, total_attendees: totalAttendees, total_rigs: totalRigs }, { onConflict: 'id' });
 
-    return NextResponse.json({ message: "Metrics updated successfully.", totalAttendees: adminOverrideAttendees, totalRigs: adminOverrideRigs }, { status: 200 });
+    if (error) {
+      console.error("Supabase upsert error:", error);
+      return NextResponse.json({ error: "Failed to update metrics." }, { status: 500 });
+    }
+
+    return NextResponse.json({ message: "Metrics updated successfully.", totalAttendees, totalRigs }, { status: 200 });
   } catch (error) {
     console.error("Error in PATCH /api/admin/metrics:", error);
     return NextResponse.json({ error: "An unexpected error occurred." }, { status: 500 });

@@ -49,6 +49,11 @@ const DashboardPage = () => {
   const [ordersError, setOrdersError] = useState<string | null>(null);
   const [verifiedOrders, setVerifiedOrders] = useState<Order[]>([]); // New state for verified orders
   const [verifiedOrdersError, setVerifiedOrdersError] = useState<string | null>(null); // New state for verified orders error
+  const [totalAttendees, setTotalAttendees] = useState<number>(0);
+  const [totalRigs, setTotalRigs] = useState<number>(0);
+  const [newAttendeesInput, setNewAttendeesInput] = useState<string>('');
+  const [newRigsInput, setNewRigsInput] = useState<string>('');
+  const [metricsMessage, setMetricsMessage] = useState<string | null>(null);
 
   const fetchOrders = async () => {
     try {
@@ -84,6 +89,51 @@ const DashboardPage = () => {
     }
   };
 
+  const fetchMetrics = async () => {
+    try {
+      const response = await fetch('/api/admin/metrics');
+      const data = await response.json();
+      if (response.ok) {
+        setTotalAttendees(data.totalAttendees);
+        setNewAttendeesInput(data.totalAttendees.toString());
+        setTotalRigs(data.totalRigs);
+        setNewRigsInput(data.totalRigs.toString());
+      } else {
+        console.error("Failed to fetch metrics:", data.error);
+      }
+    } catch (error) {
+      console.error("Error fetching metrics:", error);
+    }
+  };
+
+  const handleSubmitMetrics = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMetricsMessage(null);
+    try {
+      const response = await fetch('/api/admin/metrics', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          totalAttendees: newAttendeesInput === '' ? null : Number(newAttendeesInput),
+          totalRigs: newRigsInput === '' ? null : Number(newRigsInput),
+        }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setMetricsMessage("Metrics updated successfully.");
+        setTotalAttendees(data.totalAttendees);
+        setTotalRigs(data.totalRigs);
+      } else {
+        setMetricsMessage(data.error || "Failed to update metrics.");
+      }
+    } catch (error) {
+      setMetricsMessage("An unexpected error occurred.");
+      console.error("Error updating metrics:", error);
+    }
+  };
+
   const handleVerifyPayment = async (orderId: string) => {
     if (!window.confirm('Are you sure you want to mark this order as paid?')) {
       return;
@@ -110,6 +160,7 @@ const DashboardPage = () => {
       alert('Order marked as paid successfully!');
       fetchOrders(); // Refresh the orders list
       fetchVerifiedOrders(); // Also refresh verified orders
+      fetchMetrics(); // Refresh metrics after order update
     } catch (err) {
       console.error('Error verifying payment:', err);
       alert('An unexpected error occurred while verifying payment.');
@@ -142,6 +193,7 @@ const DashboardPage = () => {
       alert('Order marked as unpaid successfully!');
       fetchOrders(); // Refresh the orders list
       fetchVerifiedOrders(); // Also refresh verified orders
+      fetchMetrics(); // Refresh metrics after order update
     } catch (err) {
       console.error('Error unverifying payment:', err);
       alert('An unexpected error occurred while unverifying payment.');
@@ -169,6 +221,7 @@ const DashboardPage = () => {
       
       fetchOrders(); // Fetch orders as well
       fetchVerifiedOrders(); // Fetch verified orders on component mount
+      fetchMetrics(); // Fetch metrics on component mount
     }
   }, [status, session, router]);
 
@@ -191,6 +244,48 @@ const DashboardPage = () => {
         Sign Out
       </button>
 
+      {/* Admin Metrics Management */}
+      {session?.user?.isAdmin && (
+        <div className="bg-zinc-900/60 rounded-2xl border border-white/10 p-6 mb-8">
+          <h2 className="text-2xl font-semibold mb-4">Admin Metrics Management</h2>
+          <form onSubmit={handleSubmitMetrics} className="space-y-4">
+            <div>
+              <label htmlFor="totalAttendees" className="block text-sm font-medium text-gray-300">Total Attendees</label>
+              <input
+                type="number"
+                id="totalAttendees"
+                className="mt-1 block w-full rounded-md bg-zinc-700 border-transparent text-white focus:border-teal-500 focus:ring-teal-500"
+                value={newAttendeesInput}
+                onChange={(e) => setNewAttendeesInput(e.target.value)}
+                placeholder="Enter total attendees"
+              />
+            </div>
+            <div>
+              <label htmlFor="totalRigs" className="block text-sm font-medium text-gray-300">Total Rigs</label>
+              <input
+                type="number"
+                id="totalRigs"
+                className="mt-1 block w-full rounded-md bg-zinc-700 border-transparent text-white focus:border-teal-500 focus:ring-teal-500"
+                value={newRigsInput}
+                onChange={(e) => setNewRigsInput(e.target.value)}
+                placeholder="Enter total rigs"
+              />
+            </div>
+            {metricsMessage && (
+              <p className={`text-sm ${metricsMessage.includes("successfully") ? "text-green-500" : "text-red-500"}`}>
+                {metricsMessage}
+              </p>
+            )}
+            <button
+              type="submit"
+              className="px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition-colors duration-200"
+            >
+              Update Metrics
+            </button>
+          </form>
+        </div>
+      )}
+
       <div className="mb-8">
         <Link href="/dashboard/verified-orders" className="text-teal-400 hover:underline">
           View Verified Orders
@@ -201,69 +296,116 @@ const DashboardPage = () => {
       {ordersError && <p className="text-red-500 mb-4">{ordersError}</p>}
       {orders.length === 0 && !ordersError && <p className="mb-8">No pending orders found.</p>}
       {orders.length > 0 && (
-        <div className="bg-zinc-900/60 rounded-2xl border border-white/10 p-6 mb-8 overflow-x-auto">
-          <table className="min-w-full text-left text-sm">
-            <thead>
-              <tr>
-                <th className="py-2 px-4 border-b border-white/10">ID</th>
-                <th className="py-2 px-4 border-b border-white/10">Email</th>
-                <th className="py-2 px-4 border-b border-white/10">Phone</th>
-                <th className="py-2 px-4 border-b border-white/10">Amount</th>
-                <th className="py-2 px-4 border-b border-white/10">Special Requests</th>
-                <th className="py-2 px-4 border-b border-white/10">Plate Number</th>
-                <th className="py-2 px-4 border-b border-white/10">Vehicle Type</th>
-                <th className="py-2 px-4 border-b border-white/10">Drivetrain</th>
-                <th className="py-2 px-4 border-b border-white/10">Setup 1</th>
-                <th className="py-2 px-4 border-b border-white/10">Setup 2</th>
-                <th className="py-2 px-4 border-b border-white/10">Tent Count</th>
-                <th className="py-2 px-4 border-b border-white/10">Receipt</th>
-                <th className="py-2 px-4 border-b border-white/10">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order) => (
-                <tr key={order.id} className="border-b border-white/10 last:border-b-0">
-                  <td className="py-2 px-4">{order.id}</td>
-                  <td className="py-2 px-4">{order.purchaser_email}</td>
-                  <td className="py-2 px-4">{order.purchaser_phone}</td>
-                  <td className="py-2 px-4">₱{order.total_amount.toFixed(2)}</td>
-                  <td className="py-2 px-4">{order.special_requests || 'N/A'}</td>
-                  <td className="py-2 px-4">{order.plate_number || 'N/A'}</td>
-                  <td className="py-2 px-4">{order.vehicle_type || 'N/A'}</td>
-                  <td className="py-2 px-4">{order.drivetrain || 'N/A'}</td>
-                  <td className="py-2 px-4">{order.setup1 || 'N/A'}</td>
-                  <td className="py-2 px-4">{order.setup2 || 'N/A'}</td>
-                  <td className="py-2 px-4">{order.tent_count || 'N/A'}</td>
-                  <td className="py-2 px-4">
-                    {order.payment_receipt_url ? (
-                      <button
-                        onClick={() => handleDownloadReceipt(order.payment_receipt_url as string)}
-                        className="text-teal-400 hover:underline"
-                      >
-                        View Receipt
-                      </button>
-                    ) : (
-                      'N/A'
-                    )}
-                  </td>
-                  <td className="py-2 px-4">
-                    <button
-                      onClick={() => handleVerifyPayment(order.id)}
-                      className="bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 mr-2"
-                    >
-                      Verify
-                    </button>
-                    <button
-                      onClick={() => handleUnverifyPayment(order.id)}
-                      className="bg-yellow-600 text-white px-3 py-1 rounded-md hover:bg-yellow-700"
-                    >
-                      Unverify
-                    </button>
-                  </td>
+        <div className="bg-zinc-900/60 rounded-2xl border border-white/10 p-6 mb-8">
+          <div className="hidden md:block overflow-x-auto">
+            <table className="min-w-full text-left text-sm">
+              <thead>
+                <tr>
+                  <th className="py-2 px-4 border-b border-white/10">ID</th>
+                  <th className="py-2 px-4 border-b border-white/10">Email</th>
+                  <th className="py-2 px-4 border-b border-white/10">Phone</th>
+                  <th className="py-2 px-4 border-b border-white/10">Amount</th>
+                  <th className="py-2 px-4 border-b border-white/10">Special Requests</th>
+                  <th className="py-2 px-4 border-b border-white/10">Plate Number</th>
+                  <th className="py-2 px-4 border-b border-white/10">Vehicle Type</th>
+                  <th className="py-2 px-4 border-b border-white/10">Drivetrain</th>
+                  <th className="py-2 px-4 border-b border-white/10">Setup 1</th>
+                  <th className="py-2 px-4 border-b border-white/10">Setup 2</th>
+                  <th className="py-2 px-4 border-b border-white/10">Tent Count</th>
+                  <th className="py-2 px-4 border-b border-white/10">Receipt</th>
+                  <th className="py-2 px-4 border-b border-white/10">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {orders.map((order) => (
+                  <tr key={order.id} className="border-b border-white/10 last:border-b-0">
+                    <td className="py-2 px-4">{order.id}</td>
+                    <td className="py-2 px-4">{order.purchaser_email}</td>
+                    <td className="py-2 px-4">{order.purchaser_phone}</td>
+                    <td className="py-2 px-4">₱{order.total_amount.toFixed(2)}</td>
+                    <td className="py-2 px-4">{order.special_requests || 'N/A'}</td>
+                    <td className="py-2 px-4">{order.plate_number || 'N/A'}</td>
+                    <td className="py-2 px-4">{order.vehicle_type || 'N/A'}</td>
+                    <td className="py-2 px-4">{order.drivetrain || 'N/A'}</td>
+                    <td className="py-2 px-4">{order.setup1 || 'N/A'}</td>
+                    <td className="py-2 px-4">{order.setup2 || 'N/A'}</td>
+                    <td className="py-2 px-4">{order.tent_count || 'N/A'}</td>
+                    <td className="py-2 px-4">
+                      {order.payment_receipt_url ? (
+                        <button
+                          onClick={() => handleDownloadReceipt(order.payment_receipt_url as string)}
+                          className="text-teal-400 hover:underline"
+                        >
+                          View Receipt
+                        </button>
+                      ) : (
+                        'N/A'
+                      )}
+                    </td>
+                    <td className="py-2 px-4">
+                      <button
+                        onClick={() => handleVerifyPayment(order.id)}
+                        className="bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 mr-2"
+                      >
+                        Verify
+                      </button>
+                      <button
+                        onClick={() => handleUnverifyPayment(order.id)}
+                        className="bg-yellow-600 text-white px-3 py-1 rounded-md hover:bg-yellow-700"
+                      >
+                        Unverify
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile View */}
+          <div className="md:hidden space-y-4">
+            {orders.map((order) => (
+              <div key={order.id} className="bg-zinc-800/50 rounded-lg p-4 border border-white/10">
+                <p className="text-sm text-gray-400"><strong>ID:</strong> {order.id}</p>
+                <p className="text-sm text-gray-400 mt-1"><strong>Email:</strong> {order.purchaser_email}</p>
+                <p className="text-sm text-gray-400 mt-1"><strong>Phone:</strong> {order.purchaser_phone}</p>
+                <p className="text-sm text-gray-400 mt-1"><strong>Amount:</strong> ₱{order.total_amount.toFixed(2)}</p>
+                <p className="text-sm text-gray-400 mt-1"><strong>Requests:</strong> {order.special_requests || 'N/A'}</p>
+                <p className="text-sm text-gray-400 mt-1"><strong>Plate:</strong> {order.plate_number || 'N/A'}</p>
+                <p className="text-sm text-gray-400 mt-1"><strong>Vehicle:</strong> {order.vehicle_type || 'N/A'}</p>
+                <p className="text-sm text-gray-400 mt-1"><strong>Drivetrain:</strong> {order.drivetrain || 'N/A'}</p>
+                <p className="text-sm text-gray-400 mt-1"><strong>Setup 1:</strong> {order.setup1 || 'N/A'}</p>
+                <p className="text-sm text-gray-400 mt-1"><strong>Setup 2:</strong> {order.setup2 || 'N/A'}</p>
+                <p className="text-sm text-gray-400 mt-1"><strong>Tent Count:</strong> {order.tent_count || 'N/A'}</p>
+                <div className="mt-2">
+                  {order.payment_receipt_url ? (
+                    <button
+                      onClick={() => handleDownloadReceipt(order.payment_receipt_url as string)}
+                      className="text-teal-400 hover:underline text-sm"
+                    >
+                      View Receipt
+                    </button>
+                  ) : (
+                    <span className="text-sm text-gray-400">Receipt: N/A</span>
+                  )}
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <button
+                    onClick={() => handleVerifyPayment(order.id)}
+                    className="bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 flex-grow"
+                  >
+                    Verify
+                  </button>
+                  <button
+                    onClick={() => handleUnverifyPayment(order.id)}
+                    className="bg-yellow-600 text-white px-3 py-1 rounded-md hover:bg-yellow-700 flex-grow"
+                  >
+                    Unverify
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
