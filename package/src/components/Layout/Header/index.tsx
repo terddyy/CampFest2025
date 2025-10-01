@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button'
 import React from 'react'
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
-import ThemeToggle from '@/components/ThemeToggle';
 
 const Header: React.FC = () => {
 
@@ -38,12 +37,15 @@ const Header: React.FC = () => {
             </div>
             <div className='flex items-center gap-3 sm:gap-6'>
               <div className={`hidden md:flex items-center gap-6`}>
-                <a href="tel:09312146746" className={`text-sm sm:text-base flex items-center gap-2 text-black dark:text-white dark:border-white/20 border-r pr-6`}>
+                <a href="tel:09178162695" className={`text-sm sm:text-base flex items-center gap-2 text-black dark:text-white dark:border-white/20 border-r pr-6`}>
                   <Icon icon={'ph:phone-bold'} width={20} height={20} />
-                  0931-214-6746
+                  0917-816-2695 (Lhotte)
+                </a>
+                <a href="tel:09260592803" className={`text-sm sm:text-base flex items-center gap-2 text-black dark:text-white dark:border-white/20 border-r pr-6`}>
+                  <Icon icon={'ph:phone-bold'} width={20} height={20} />
+                  0926-059-2803 (Hilda)
                 </a>
               </div>
-              <ThemeToggle />
               <Link href="/tickets" className="hidden md:block">
                 <Button size="sm" className={`rounded-full px-4 bg-black text-white`}>Buy tickets</Button>
               </Link>
@@ -65,9 +67,13 @@ const Header: React.FC = () => {
                 <Button size="lg" className={`rounded-full px-8 bg-green-500 text-white`}>Dashboard</Button>
               </Link>
             )}
-            <a href="tel:09312146746" className={`text-2xl flex items-center gap-2 text-black dark:text-white`}>
+            <a href="tel:09178162695" className={`text-2xl flex items-center gap-2 text-black dark:text-white`}>
               <Icon icon={'ph:phone-bold'} width={24} height={24} />
-              0931-214-6746
+              0917-816-2695 (Lhotte)
+            </a>
+            <a href="tel:09260592803" className={`text-2xl flex items-center gap-2 text-black dark:text-white`}>
+              <Icon icon={'ph:phone-bold'} width={24} height={24} />
+              0926-059-2803 (Hilda)
             </a>
             <Link href="/tickets" onClick={toggleMobileMenu}>
               <Button size="lg" className={`rounded-full px-8 bg-black text-white`}>Buy tickets</Button>
@@ -75,7 +81,6 @@ const Header: React.FC = () => {
             <Link href="/login" onClick={toggleMobileMenu}>
               <Button size="lg" className={`rounded-full px-8 bg-blue-500 text-white`}>Sign In</Button>
             </Link>
-            <ThemeToggle />
             {session?.user && (
               <Button
                 size="lg"

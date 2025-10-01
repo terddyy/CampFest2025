@@ -17,6 +17,22 @@ const Hero: React.FC = () => {
   const [totalAttendees, setTotalAttendees] = useState<number>(0);
   const [totalRigs, setTotalRigs] = useState<number>(0);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // Adjust this value for more or less stagger
+        when: "beforeChildren" // Animate parent first, then children
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
@@ -36,7 +52,11 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section 
+    <motion.section 
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      transition={{ duration: 1.2, ease: "easeOut" }}
       className='min-h-screen'
       style={{
         backgroundColor: 'black',
@@ -49,7 +69,7 @@ const Hero: React.FC = () => {
       <div className='relative flex flex-col justify-between'>
         <div className='container max-w-8xl mx-auto px-5 2xl:px-0 flex flex-col justify-center flex-grow min-h-[calc(100vh-var(--header-height-mobile))] lg:min-h-[calc(100vh-var(--header-height-desktop))] pb-10'>
           <div className='grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-8'>
-            <div className='text-white text-center lg:text-start z-10 order-2 lg:order-1'>
+            <motion.div variants={itemVariants} className='text-white text-center lg:text-start z-10 order-2 lg:order-1'>
               <div className="flex items-center justify-center lg:justify-start gap-2 mt-[-30px] lg:-mt-36">
                 <Icon icon="solar:user-bold" width={24} height={24} className="text-white" />
                 <p className="text-xl font-semibold text-white">{totalAttendees} attending</p>
@@ -62,7 +82,7 @@ const Hero: React.FC = () => {
                 <Icon icon="mdi:car" width={24} height={24} className="text-white" />
                 <p className="text-xl font-semibold text-white">{totalRigs} rigs</p>
               </div>
-              <h1 className='relative text-inherit text-4xl sm:text-6xl md:text-7xl font-semibold -tracking-wider mt-4 mb-6 leading-tight h-44 w-full'>
+              <motion.h1 variants={itemVariants} className='relative text-inherit text-4xl sm:text-6xl md:text-7xl font-semibold -tracking-wider mt-4 mb-6 leading-tight h-44 w-full'>
                 <Image
                   src={'/images/terdimage/CampFest2025 Logo.jpg'}
                   alt='Campfest 2025 Logo'
@@ -71,8 +91,8 @@ const Hero: React.FC = () => {
                   priority={true}
                   className="mx-auto lg:mx-0"
                 />
-              </h1>
-              <div className='flex flex-col xs:flex-row justify-center lg:justify-start gap-3 sm:gap-4 mt-6'>
+              </motion.h1>
+              <motion.div variants={itemVariants} className='flex flex-col xs:flex-row justify-center lg:justify-start gap-3 sm:gap-4 mt-6'>
                 <Link href="/tickets" className='px-6 py-3 sm:px-8 sm:py-4 border border-white bg-white text-dark duration-300 hover:bg-transparent hover:text-white text-sm sm:text-base font-semibold rounded-full hover:cursor-pointer'>
                   Buy tickets
                 </Link>
@@ -90,10 +110,10 @@ const Hero: React.FC = () => {
                 >
                   Sponsors
                 </motion.button>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div className='w-full order-1 lg:order-2 pt-0 lg:pt-0 mt-[-130px]'>
+            <motion.div variants={itemVariants} className='w-full order-1 lg:order-2 pt-0 lg:pt-0 mt-[-130px]'>
               <Carousel
                 plugins={[plugin.current]}
                 className="w-full"
@@ -281,15 +301,15 @@ const Hero: React.FC = () => {
                 <CarouselPrevious />
                 <CarouselNext />
               </Carousel>
-            </div>
+            </motion.div>
           </div>
-          <div className='w-full flex-shrink-0'>
+          <motion.div variants={itemVariants} className='w-full flex-shrink-0'>
             <SponsorsCarousel />
-          </div>
+          </motion.div>
         </div>
 
       </div>
-    </section>
+    </motion.section>
   )
 }
 

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Icon } from '@iconify/react';
 
 type TicketType = 'adult' | 'child' | 'infant' | 'earlyPass'
 
@@ -23,7 +24,7 @@ const TICKETS: TicketConfig[] = [
   { id: 'earlyPass', name: 'Early Pass to CampFest 2025', description: 'Kids below 5 years old are FREE (no need to register)', price: 600, note: 'Date: November 7, 2025 (Friday)' },
   { id: 'adult', name: 'Adult', description: '13 years old and above', price: 1200, note: 'Age: 13+' },
   { id: 'child', name: 'Child', description: '5-12 years old', price: 600, note: 'Age: 5-12' },
-  { id: 'infant', name: 'Infant', description: 'Below 5 years old: FREE', price: 0, note: 'kids below 5 years old: FREE (no need to register)' },
+  { id: 'infant', name: 'Infant', description: 'Below 5 years old: FREE', price: 0, note: 'kids below 5 years old: FREE' },
 ]
 
 function formatCurrency(amount: number) {
@@ -185,6 +186,16 @@ export default function TicketsPage() {
         {/* <Link href="/login" className="px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600 transition-colors duration-200">Login</Link> */}
       </div>
       <h1 className='text-3xl font-semibold mb-6 text-white'>Tickets</h1>
+      <div className="md:hidden flex flex-col items-center justify-center space-y-4 mb-6">
+        <a href="tel:09178162695" className={`text-lg flex items-center gap-2 text-white`}>
+          <Icon icon={'ph:phone-bold'} width={20} height={20} />
+          0917-816-2695 (Lhotte)
+        </a>
+        <a href="tel:09260592803" className={`text-lg flex items-center gap-2 text-white`}>
+          <Icon icon={'ph:phone-bold'} width={20} height={20} />
+          0926-059-2803 (Hilda)
+        </a>
+      </div>
       {/* Removed displayAttendees and displayRigs */}
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
         <div className='bg-zinc-900/60 rounded-2xl border border-white/10 p-6'>
@@ -221,6 +232,8 @@ export default function TicketsPage() {
 
         <form onSubmit={handleSubmit} className='bg-zinc-900/60 rounded-2xl border border-white/10 p-6'>
           <p className='text-xl font-semibold mb-4 text-white'>Registration Details</p>
+          <p className='text-gray-400 text-sm mt-3'>Please remember that each registration covers one rig/vehicle only.</p>
+          <p className='text-gray-400 text-sm mt-3'>Upload a screenshot of your receipt before submitting</p>
 
           {Array.from({ length: totalTicketsSelected }).map((_, attendeeIndex) => (
             <div key={attendeeIndex} className="border border-white/10 rounded-2xl p-6 mb-4">
