@@ -26,6 +26,8 @@ interface Order {
   setup1?: string;
   setup2?: string;
   is_paid?: boolean; // New column for payment status
+  is_verified?: boolean; // Add is_verified to Order interface
+  tent_count: string | null; // Add tent_count to Order interface
   attendees: {
     id: string;
     first_name: string;
@@ -45,6 +47,8 @@ const DashboardPage = () => {
   
   const [orders, setOrders] = useState<Order[]>([]);
   const [ordersError, setOrdersError] = useState<string | null>(null);
+  const [verifiedOrders, setVerifiedOrders] = useState<Order[]>([]); // New state for verified orders
+  const [verifiedOrdersError, setVerifiedOrdersError] = useState<string | null>(null); // New state for verified orders error
 
   const fetchOrders = async () => {
     try {
@@ -63,6 +67,22 @@ const DashboardPage = () => {
     }
   };
 
+  const fetchVerifiedOrders = async () => { // New function to fetch verified orders
+    try {
+      const response = await fetch('/api/orders'); // Call the new GET API for verified orders
+      const data = await response.json();
+      console.log('API response for verified orders:', data);
+
+      if (!response.ok) {
+        setVerifiedOrdersError(data.error || 'Failed to fetch verified orders.');
+        return;
+      }
+      setVerifiedOrders(data);
+    } catch (err) {
+      console.error('Failed to fetch verified orders:', err);
+      setVerifiedOrdersError('An unexpected error occurred while fetching verified orders.');
+    }
+  };
 
   const handleVerifyPayment = async (orderId: string) => {
     if (!window.confirm('Are you sure you want to mark this order as paid?')) {
@@ -89,6 +109,7 @@ const DashboardPage = () => {
 
       alert('Order marked as paid successfully!');
       fetchOrders(); // Refresh the orders list
+      fetchVerifiedOrders(); // Also refresh verified orders
     } catch (err) {
       console.error('Error verifying payment:', err);
       alert('An unexpected error occurred while verifying payment.');
@@ -120,10 +141,15 @@ const DashboardPage = () => {
 
       alert('Order marked as unpaid successfully!');
       fetchOrders(); // Refresh the orders list
+      fetchVerifiedOrders(); // Also refresh verified orders
     } catch (err) {
       console.error('Error unverifying payment:', err);
       alert('An unexpected error occurred while unverifying payment.');
     }
+  };
+
+  const handleDownloadReceipt = (url: string) => {
+    window.open(url, '_blank');
   };
 
   useEffect(() => {
@@ -142,6 +168,7 @@ const DashboardPage = () => {
       // Only fetch users if authenticated
       
       fetchOrders(); // Fetch orders as well
+      fetchVerifiedOrders(); // Fetch verified orders on component mount
     }
   }, [status, session, router]);
 
@@ -154,88 +181,97 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-gray-900 p-4">
-      <div className="w-full max-w-4xl flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-4xl font-bold">Welcome, {session.user?.name || session.user?.email}!</h1>
-          <p className="text-lg text-gray-600">You are logged in as an administrator.</p>
+    <div className="container max-w-7xl mx-auto px-5 pt-28 pb-20 text-white">
+      <h1 className="text-3xl font-semibold mb-6">Admin Dashboard</h1>
+
+      <button
+        onClick={() => signOut({ callbackUrl: '/' })}
+        className="mb-8 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-200"
+      >
+        Sign Out
+      </button>
+
+      <div className="mb-8">
+        <Link href="/dashboard/verified-orders" className="text-teal-400 hover:underline">
+          View Verified Orders
+        </Link>
+      </div>
+
+      <h2 className="text-2xl font-semibold mb-4">Pending Orders</h2>
+      {ordersError && <p className="text-red-500 mb-4">{ordersError}</p>}
+      {orders.length === 0 && !ordersError && <p className="mb-8">No pending orders found.</p>}
+      {orders.length > 0 && (
+        <div className="bg-zinc-900/60 rounded-2xl border border-white/10 p-6 mb-8 overflow-x-auto">
+          <table className="min-w-full text-left text-sm">
+            <thead>
+              <tr>
+                <th className="py-2 px-4 border-b border-white/10">ID</th>
+                <th className="py-2 px-4 border-b border-white/10">Email</th>
+                <th className="py-2 px-4 border-b border-white/10">Phone</th>
+                <th className="py-2 px-4 border-b border-white/10">Amount</th>
+                <th className="py-2 px-4 border-b border-white/10">Special Requests</th>
+                <th className="py-2 px-4 border-b border-white/10">Plate Number</th>
+                <th className="py-2 px-4 border-b border-white/10">Vehicle Type</th>
+                <th className="py-2 px-4 border-b border-white/10">Drivetrain</th>
+                <th className="py-2 px-4 border-b border-white/10">Setup 1</th>
+                <th className="py-2 px-4 border-b border-white/10">Setup 2</th>
+                <th className="py-2 px-4 border-b border-white/10">Tent Count</th>
+                <th className="py-2 px-4 border-b border-white/10">Receipt</th>
+                <th className="py-2 px-4 border-b border-white/10">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order.id} className="border-b border-white/10 last:border-b-0">
+                  <td className="py-2 px-4">{order.id}</td>
+                  <td className="py-2 px-4">{order.purchaser_email}</td>
+                  <td className="py-2 px-4">{order.purchaser_phone}</td>
+                  <td className="py-2 px-4">₱{order.total_amount.toFixed(2)}</td>
+                  <td className="py-2 px-4">{order.special_requests || 'N/A'}</td>
+                  <td className="py-2 px-4">{order.plate_number || 'N/A'}</td>
+                  <td className="py-2 px-4">{order.vehicle_type || 'N/A'}</td>
+                  <td className="py-2 px-4">{order.drivetrain || 'N/A'}</td>
+                  <td className="py-2 px-4">{order.setup1 || 'N/A'}</td>
+                  <td className="py-2 px-4">{order.setup2 || 'N/A'}</td>
+                  <td className="py-2 px-4">{order.tent_count || 'N/A'}</td>
+                  <td className="py-2 px-4">
+                    {order.payment_receipt_url ? (
+                      <button
+                        onClick={() => handleDownloadReceipt(order.payment_receipt_url as string)}
+                        className="text-teal-400 hover:underline"
+                      >
+                        View Receipt
+                      </button>
+                    ) : (
+                      'N/A'
+                    )}
+                  </td>
+                  <td className="py-2 px-4">
+                    <button
+                      onClick={() => handleVerifyPayment(order.id)}
+                      className="bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 mr-2"
+                    >
+                      Verify
+                    </button>
+                    <button
+                      onClick={() => handleUnverifyPayment(order.id)}
+                      className="bg-yellow-600 text-white px-3 py-1 rounded-md hover:bg-yellow-700"
+                    >
+                      Unverify
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <button
-          onClick={() => signOut({ callbackUrl: '/' })}
-          className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors duration-200"
-        >
-          Sign Out
-        </button>
+      )}
+
+      <div className="mt-8">
+        <Link href="/dashboard/metrics" className="text-teal-400 hover:underline">
+          Go to Metrics Management
+        </Link>
       </div>
-
-
-
-      <div className="w-full max-w-4xl bg-white rounded-2xl border border-black/10 p-8 shadow-md mt-8">
-        <h2 className="text-2xl font-bold mb-4">Customer Orders</h2>
-        {ordersError && <p className="text-red-500 mb-4">{ordersError}</p>}
-        {orders.length === 0 && !ordersError && <p>No orders found.</p>}
-        {orders.length > 0 && (
-          <div className="space-y-6">
-            {orders.map((order) => (
-              <div key={order.id} className="border border-black/10 rounded-xl p-5">
-                <p className="text-lg font-semibold">Order ID: {order.id}</p>
-                <p className="text-sm text-gray-700">Purchaser Email: {order.purchaser_email}</p>
-                <p className="text-sm text-gray-700">Purchaser Phone: {order.purchaser_phone}</p>
-                <p className="text-sm text-gray-700">Total Amount: {order.total_amount}</p>
-                {order.plate_number && <p className="text-sm text-gray-700">Plate Number: {order.plate_number}</p>}
-                {order.vehicle_type && <p className="text-sm text-gray-700">Vehicle Type: {order.vehicle_type}</p>}
-                {order.drivetrain && <p className="text-sm text-gray-700">Drivetrain: {order.drivetrain}</p>}
-                {order.setup1 && <p className="text-sm text-gray-700">Setup 1: {order.setup1}</p>}
-                {order.setup2 && <p className="text-sm text-gray-700">Setup 2: {order.setup2}</p>}
-                {order.special_requests && <p className="text-sm text-gray-700">Special Requests: {order.special_requests}</p>}
-                {order.payment_receipt_url && (
-                  <p className="text-sm text-gray-700">
-                    Payment Receipt: <a href={order.payment_receipt_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">View Receipt</a>
-                  </p>
-                )}
-                <p className="text-sm text-gray-700">Order Date: {new Date(order.created_at).toLocaleString()}</p>
-                <p className="text-sm text-gray-700">
-                  Payment Status: {' '}
-                  <span className={order.is_paid ? "text-green-500" : "text-red-500"}>
-                    {order.is_paid ? 'Paid' : 'Unpaid'}
-                  </span>
-                </p>
-
-                {!order.is_paid && (
-                  <button
-                    onClick={() => handleVerifyPayment(order.id)}
-                    className="mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-colors duration-200"
-                  >
-                    Verify Payment
-                  </button>
-                )}
-
-                {order.is_paid && (
-                  <button
-                    onClick={() => handleUnverifyPayment(order.id)}
-                    className="mt-4 ml-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors duration-200"
-                  >
-                    Unverify Payment
-                  </button>
-                )}
-
-                <p className="text-base font-medium mt-4 mb-2">Attendees:</p>
-                {order.attendees && order.attendees.length > 0 ? (
-                  <ul className="list-disc pl-5 text-sm text-gray-700">
-                    {order.attendees.map((attendee) => (
-                      <li key={attendee.id}>{attendee.first_name} {attendee.last_name}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-sm text-gray-500">No attendees found for this order.</p>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-
     </div>
   );
 };
