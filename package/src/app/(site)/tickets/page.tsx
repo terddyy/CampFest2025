@@ -21,7 +21,7 @@ type TicketConfig = {
 }
 
 const TICKETS: TicketConfig[] = [
-  { id: 'earlyPass', name: 'Early Pass to CampFest 2025', description: 'Kids below 5 years old are FREE (no need to register)', price: 600, note: 'Date: November 7, 2025 (Friday)' },
+  { id: 'earlyPass', name: 'Early Pass to CampFest 2025', description: 'Kids below 5 years old are FREE', price: 600, note: 'Date: November 7, 2025 (Friday)' },
   { id: 'adult', name: 'Adult', description: '13 years old and above', price: 1200, note: 'Age: 13+' },
   { id: 'child', name: 'Child', description: '5-12 years old', price: 600, note: 'Age: 5-12' },
   { id: 'infant', name: 'Infant', description: 'Below 5 years old: FREE', price: 0, note: 'kids below 5 years old: FREE' },
